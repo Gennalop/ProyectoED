@@ -1,20 +1,19 @@
 package ec.edu.espol.model;
 
 import java.io.Serializable;
-import javafx.scene.image.Image;
 
 public class Contacto implements Serializable {
     
     private static final long serialVersionUID = 8799656478674716638L;
     String nombre;
     String correo;
-    Image perfil;
+    String direccionPerfil;
     String telefono;
 
-    public Contacto(String nombre, String correo, Image perfil, String telefono) {
+    public Contacto(String nombre, String correo, String perfil, String telefono) {
         this.nombre = nombre;
         this.correo = correo;
-        this.perfil = perfil;
+        this.direccionPerfil = perfil;
         this.telefono = telefono;
     }
 
@@ -34,15 +33,15 @@ public class Contacto implements Serializable {
         this.correo = correo;
     }
 
-    public Image getPerfil() {
-        return perfil;
+    public String getPerfil() {
+        return direccionPerfil;
     }
 
-    public void setPerfil(Image perfil) {
-        this.perfil = perfil;
+    public void setPerfil(String perfil) {
+        this.direccionPerfil = perfil;
     }
     
     public String toString(){
-        return nombre;
+        return nombre+"-"+correo+"-"+telefono+"-"+direccionPerfil;
     }
 }

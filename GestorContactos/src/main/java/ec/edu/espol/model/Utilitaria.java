@@ -3,6 +3,7 @@ package ec.edu.espol.model;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,14 +27,23 @@ public class Utilitaria {
                 ie.printStackTrace(System.out);
             }
         }
+        //Lo que yo puedo leer
+        File file = new File("Copy"+nomfile);
+        try {
+            FileWriter writer = new FileWriter(file);
+            writer.write(e.toString());
+            writer.close();
+        } catch (IOException ex) {
+        }
     }
     
-    public static <E> List<E> readFile(String nomfile){
-        List<E> retorno = new ArrayList<>();
-        E e;
+    //Revisar
+    public static List<Contacto> readFileContacto(String nomfile){
+        List<Contacto> retorno = new ArrayList<>();
+        Contacto e;
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomfile))){
             while(true){
-                e = (E) in.readObject();
+                e = (Contacto) in.readObject();
                 System.out.println("Leyendo: "+e.toString());
                 retorno.add(e);
             }

@@ -2,20 +2,16 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" onMouseClicked="#infoContacto" prefHeight="48.0" prefWidth="258.0" spacing="10.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controllers.ItemContactoController">
+<HBox alignment="CENTER_LEFT" onMouseClicked="#infoContacto" prefHeight="48.0" prefWidth="250.0" spacing="10.0" style="-fx-background-color: #e1e1e1;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controllers.ItemContactoController">
    <children>
       <ImageView fx:id="imageView" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets left="5.0" />
          </HBox.margin>
-         <image>
-            <Image url="@../img/usuarioDefault.png" />
-         </image>
       </ImageView>
       <Label fx:id="nombre">
          <font>
@@ -24,6 +20,6 @@
       </Label>
    </children>
    <padding>
-      <Insets right="5.0" />
+      <Insets bottom="5.0" right="5.0" top="5.0" />
    </padding>
 </HBox>

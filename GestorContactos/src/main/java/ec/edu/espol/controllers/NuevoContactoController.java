@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,12 +29,14 @@ public class NuevoContactoController implements Initializable {
     @FXML
     private TextField correo;
 
-    Image perfil;
+    String perfil = "img/usuarioDefault.png";
+    
+    @FXML
+    private ComboBox<?> cbox;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        perfil = new Image("img/usuarioDefault.png");
-        imageView.setImage(perfil);
+        imageView.setImage(new Image(perfil));
         imageView.setFitWidth(100); imageView.setFitHeight(100);
     }    
 
@@ -43,9 +46,8 @@ public class NuevoContactoController implements Initializable {
         fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPEG Image","*.jpg"), new FileChooser.ExtensionFilter("PNG Image", "*.png"), new FileChooser.ExtensionFilter("All image files","*.jpg","*.png"));
         File imgFile = fc.showOpenDialog(App.getStage());
         if (imgFile != null) {
-            Image i = new Image("File:"+imgFile.getPath());
-            perfil = i;
-            imageView.setImage(i);
+            perfil = "File:"+imgFile.getPath();
+            imageView.setImage(new Image(perfil));
             imageView.setFitHeight(100);
             imageView.setFitWidth(100);
         }
@@ -72,5 +74,5 @@ public class NuevoContactoController implements Initializable {
         Utilitaria.saveFile(c, "Contacto.XML");
         cancelar(event);
     }
-    
+
 }

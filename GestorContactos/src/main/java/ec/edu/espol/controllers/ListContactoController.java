@@ -46,8 +46,8 @@ public class ListContactoController implements Initializable {
         List<Contacto> contactos = Utilitaria.readFileContacto("Contacto.XML");
         
         //Prueba
-        Contacto c = new Contacto("nombre", "corr", "img/iconoMas.png", "tel");
-        contactos.add(c);
+        //Contacto c = new Contacto("nombre", "corr", "img/iconoMas.png", "tel");
+        //contactos.add(c);
         
         for (int i=0; i<contactos.size(); i++) {
             System.out.println(contactos.get(i).toString());

@@ -70,8 +70,8 @@ public class NuevoContactoController implements Initializable {
         String nomb = nombre.getText();
         String telf = telefono.getText();
         String corr = correo.getText();
-        Contacto c = new Contacto(nomb, corr, perfil, telf);
-        Utilitaria.saveFile(c, "Contacto.XML");
+        //Contacto c = new Contacto(nomb, corr, perfil, telf);
+        //Utilitaria.saveFile(c, "Contacto.XML");
         cancelar(event);
     }
 

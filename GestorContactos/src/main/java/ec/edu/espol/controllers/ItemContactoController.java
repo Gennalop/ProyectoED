@@ -26,7 +26,7 @@ public class ItemContactoController implements Initializable {
     }    
 
     void setData(Contacto c) {
-        imageView.setImage(new Image(c.getPerfil()));
+        imageView.setImage(new Image(c.getFotoPerfil()));
         nombre.setText(c.getNombre());
     }
 

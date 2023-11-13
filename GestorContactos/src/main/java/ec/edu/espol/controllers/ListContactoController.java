@@ -5,6 +5,8 @@ import ec.edu.espol.model.Contacto;
 import ec.edu.espol.model.Utilitaria;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -30,6 +32,8 @@ public class ListContactoController implements Initializable {
     @FXML
     private ImageView ivOpciones;
     
+    LinkedList<Contacto> contactos;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -40,6 +44,8 @@ public class ListContactoController implements Initializable {
         
         
         List<Contacto> contactos = Utilitaria.readFileContacto("Contacto.XML");
+        
+        //Prueba
         Contacto c = new Contacto("nombre", "corr", "img/iconoMas.png", "tel");
         contactos.add(c);
         
@@ -68,8 +74,6 @@ public class ListContactoController implements Initializable {
             e.printStackTrace();
         }
     
-    }
-
-    
+    } 
     
 }

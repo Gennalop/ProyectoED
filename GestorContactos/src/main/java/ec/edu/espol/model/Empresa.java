@@ -7,8 +7,8 @@ public class Empresa extends Contacto{
     private String departamento;
     private String sitioWeb;
 
-    public Empresa(String departamento, String sitioWeb, String nombre, String perfil, LinkedList<String> fotos, LinkedList<Atributo<String>> telefono, ArrayList<Atributo<Contacto>> contactosAsociados) {
-        super(nombre, perfil, fotos, telefono, contactosAsociados);
+    public Empresa(String departamento, String sitioWeb, String nombre, String perfil, LinkedList<String> fotos, LinkedList<String> correos, LinkedList<String> telefonos, LinkedList<Contacto> contactos) {
+        super(nombre, perfil, fotos, correos, telefonos, contactos);
         this.departamento = departamento;
         this.sitioWeb = sitioWeb;
     }
@@ -28,5 +28,5 @@ public class Empresa extends Contacto{
     public void setSitioWeb(String sitioWeb) {
         this.sitioWeb = sitioWeb;
     }
-    
+
 }

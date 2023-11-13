@@ -139,15 +139,33 @@ public class InfoContactoController implements Initializable {
             antFoto.setVisible(true);
             sgteFoto.setVisible(true);
         }
-        //Implementar un metodo para hacer la busqueda
+        //Implementar un metodo para hacer esta busqueda
         for(int i = 0; i < contactosList.size(); i++){
             if(contactosList.get(i).getNombre().equals(contacto.getNombre()))
                 currentPos = i;
         }
+        
+        //Mover a otro metodo showData
         System.out.println(""+currentPos);
         nombre.setText(contacto.getNombre());
         imageView.setImage(new Image(contacto.getPerfil()));
         imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        
+        for(String s:contacto.getTelefonos()){
+            Label lb = new Label();
+            lb.setText(s);
+            telefonos.getChildren().add(lb);
+        }
+        for(String s:contacto.getCorreos()){
+            Label lb2 = new Label();
+            lb2.setText(s);
+            correos.getChildren().add(lb2);
+        }
+        for(Contacto ct : contacto.getContactos()){
+            Label lb3 = new Label();
+            lb3.setText(ct.getNombre());
+            contactos.getChildren().add(lb3);
+        }
     }
     
 }

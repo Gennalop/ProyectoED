@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Contacto implements Serializable {
@@ -14,23 +13,35 @@ public class Contacto implements Serializable {
     protected String nombre;
     protected String perfil;
     protected LinkedList<String> fotos;
+    protected LinkedList<String> correos;
+    protected LinkedList<String> telefonos;
+    protected LinkedList<Contacto> contactos;
+
+    public Contacto(String nombre, String perfil, LinkedList<String> fotos, LinkedList<String> correos, LinkedList<String> telefonos, LinkedList<Contacto> contactos) {
+        this.nombre = nombre;
+        this.perfil = perfil;
+        this.fotos = fotos;
+        this.correos = correos;
+        this.telefonos = telefonos;
+        this.contactos = contactos;
+    }
+    
+    
+    //Aplicar clase atributo
+    /*
+    protected LinkedList<String> fotos;
     protected LinkedList<Atributo<String>> correos;
     protected LinkedList<Atributo<String>> telefonos;
     protected ArrayList<Atributo<Contacto>> contactosAsociados;
-
+    
     public Contacto(String nombre, String perfil, LinkedList<String> fotos, LinkedList<Atributo<String>> telefonos, ArrayList<Atributo<Contacto>> contactosAsociados) {
         this.nombre = nombre;
+        this.correo = correo;
         this.perfil = perfil;
         this.fotos = fotos;
         this.telefonos = telefonos;
         this.contactosAsociados = contactosAsociados;
-    }
-
-    public Contacto(String nombre, String perfil, LinkedList<String> fotos) {
-        this.nombre = nombre;
-        this.perfil = perfil;
-        this.fotos = fotos;
-    }
+    }*/
     
     //Pasar a utilitaria y comparar con saveFile========================================================
     public LinkedList<Contacto> leerContacto(){
@@ -52,52 +63,48 @@ public class Contacto implements Serializable {
         return nombre;
     }
 
-    public LinkedList<Atributo<String>> getCorreos() {
-        return correos;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPerfil() {
         return perfil;
     }
 
-    public LinkedList<String> getFotos() {
-        return fotos;
-    }
-
-    public LinkedList<Atributo<String>> getTelefono() {
-        return telefonos;
-    }
-
-    public ArrayList<Atributo<Contacto>> getContactosAsociados() {
-        return contactosAsociados;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setCorreos(LinkedList<Atributo<String>> correos) {
-        this.correos = correos;
-    }
-
     public void setPerfil(String perfil) {
         this.perfil = perfil;
+    }
+
+    public LinkedList<String> getFotos() {
+        return fotos;
     }
 
     public void setFotos(LinkedList<String> fotos) {
         this.fotos = fotos;
     }
 
-    public void setTelefono(LinkedList<Atributo<String>> telefono) {
-        this.telefonos = telefono;
+    public LinkedList<String> getCorreos() {
+        return correos;
     }
 
-    public void setContactosAsociados(ArrayList<Atributo<Contacto>> contactosAsociados) {
-        this.contactosAsociados = contactosAsociados;
+    public void setCorreos(LinkedList<String> correos) {
+        this.correos = correos;
     }
-    
-    public String toString(){
-        return nombre+"-"+perfil;
+
+    public LinkedList<String> getTelefonos() {
+        return telefonos;
     }
-    
+
+    public void setTelefonos(LinkedList<String> telefonos) {
+        this.telefonos = telefonos;
+    }
+
+    public LinkedList<Contacto> getContactos() {
+        return contactos;
+    }
+
+    public void setContactos(LinkedList<Contacto> contactos) {
+        this.contactos = contactos;
+    }
+
 }

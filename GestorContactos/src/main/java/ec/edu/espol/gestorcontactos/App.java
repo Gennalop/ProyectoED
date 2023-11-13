@@ -42,25 +42,32 @@ public class App extends Application {
     
     public static void main(String[] args) {
         /*
-        LinkedList<String> contactosLK1 = new LinkedList<>();
-        contactosLK1.add("img/iconoMas.png");
-        contactosLK1.add("img/iconoOpciones.png");
-        Contacto c1 = new Contacto("Pepe", "img/usuarioDefault.png", contactosLK1);
-        
         LinkedList<String> contactosLK2 = new LinkedList<>();
+        LinkedList<String> contactosco2 = new LinkedList<>();
+        LinkedList<String> contactost2 = new LinkedList<>();
+        LinkedList<Contacto> contactosc2 = new LinkedList<>();
         contactosLK2.add("img/iconoFiltrar.png");
         contactosLK2.add("img/iconoFavorito.png");
         contactosLK2.add("img/iconoBuscar.png");
-        Contacto c2 = new Contacto("Mar", "img/usuarioDefault.png", contactosLK2);
+        Contacto c2 = new Contacto("Mar", "img/usuarioDefault.png", contactosLK2, contactosco2, contactost2, contactosc2);
         
-        LinkedList<String> contactosLK3 = new LinkedList<>();
-        contactosLK3.add("img/iconoUsuario.png");
-        Contacto c3 = new Contacto("AHHHH", "img/usuarioDefault.png", contactosLK3);
+        LinkedList<String> contactosLK1 = new LinkedList<>();
+        LinkedList<String> contactosco1 = new LinkedList<>();
+        contactosco1.add("a.gmail.com");
+        contactosco1.add("b.gmail.com");
+        contactosLK1.add("img/iconoMas.png");
+        contactosLK1.add("img/iconoOpciones.png");
+        LinkedList<String> contactost1 = new LinkedList<>();
+        contactost1.add("0000000");
+        contactost1.add("1111111");
+        LinkedList<Contacto> contactosc1 = new LinkedList<>();
+        contactosc1.add(c2);;
+        Contacto c1 = new Contacto("Pepe", "img/usuarioDefault.png", contactosLK1, contactosco1, contactost1, contactosc1);
+        
         
         Utilitaria.saveFile(c1, "Contacto.XML");
-        Utilitaria.saveFile(c2, "Contacto.XML");
-        Utilitaria.saveFile(c3, "Contacto.XML");*/
-        
+        Utilitaria.saveFile(c2, "Contacto.XML");*/
+       
         launch();
     }
 

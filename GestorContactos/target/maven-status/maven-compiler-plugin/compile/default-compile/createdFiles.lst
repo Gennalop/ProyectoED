@@ -1,2 +1,4 @@
 ec\edu\espol\gestorcontactos\App.class
+ec\edu\espol\controllers\ItemContactoController.class
 module-info.class
+ec\edu\espol\model\myObjectOutputStream.class

@@ -9,7 +9,7 @@ public class Persona extends Contacto{
     private ArrayList<String> telefonos;
     private ArrayList<String> correos;
 
-    public Persona(String apodo, String apellido, ArrayList<String> telefonos, ArrayList<String> correos, String nombre, String correo, String perfil, LinkedList<String> fotos, String telefono, ArrayList<Contacto> contactosAsociados) {
+    public Persona(String nombre, String apellido, String telefono, ArrayList<String> telefonos, String correo, ArrayList<String> correos, String apodo, String perfil, LinkedList<String> fotos, ArrayList<Contacto> contactosAsociados) {
         super(nombre, correo, perfil, fotos, telefono, contactosAsociados);
         this.apodo = apodo;
         this.apellido = apellido;
@@ -35,6 +35,10 @@ public class Persona extends Contacto{
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
     }
 
     public String getPerfil() {
@@ -73,6 +77,10 @@ public class Persona extends Contacto{
         this.nombre = nombre;
     }
 
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public void setPerfil(String perfil) {
         this.perfil = perfil;
     }
@@ -88,5 +96,4 @@ public class Persona extends Contacto{
     public void setContactosAsociados(ArrayList<Contacto> contactosAsociados) {
         this.contactosAsociados = contactosAsociados;
     }
-    
-}
+}    

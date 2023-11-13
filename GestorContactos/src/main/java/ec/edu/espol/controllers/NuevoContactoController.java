@@ -2,15 +2,20 @@ package ec.edu.espol.controllers;
 
 import ec.edu.espol.gestorcontactos.App;
 import ec.edu.espol.model.Contacto;
+import ec.edu.espol.model.Empresa;
+import ec.edu.espol.model.Persona;
 import ec.edu.espol.model.Utilitaria;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -66,18 +71,84 @@ public class NuevoContactoController implements Initializable {
     }
 
     @FXML
-    private void guardar(MouseEvent event) {
+    private void guardarPersona(MouseEvent event) {
         String nomb = nombre.getText();
+        String apell = apellido.getText();
         String telf = telefono.getText();
-        String corr = correo.getText();
-<<<<<<< HEAD
         
+        ArrayList<String> telfs = new ArrayList<>();
+        String[] datosTelf = telefonos.getText().split("/n");
+        for(String d: datosTelf){
+            telfs.add(d);
+        }
+           
+        String corr = correo.getText();  
+        ArrayList<String> corrs = new ArrayList<>();
+        String[] datosCorrs = correos.getText().split("/n");
+        for(String d: datosCorrs){
+            corrs.add(d);
+        } 
+        
+        String apod = apodo.getText();
+        String img = perfil.getImage();
+        
+        LinkedList<String> ftos = new LinkedList<>();
+        String[] datosFtos = fotos.getText().spilt("");
+        for(String d: datosFtos){
+            ftos.add(d);
+        } 
+        
+        ArrayList<Contacto> contsAsoc = new ArrayList<>();
+        Contacto[] datosContsAsoc = contactosAsociados.getText().split("/n");
+        for(Contacto d: datosContsAsoc){
+            contsAsoc.add(d);
+        }   
+
+        if (nomb == null || telf == null || nomb.trim().isEmpty() || telf.trim().isEmpty()) {
+            mostrarAlerta("Nombre y Apellido son obligatorios");
+            return; // Sale del método si la validación falla
+        }
+        
+        Contacto c = new Persona(nomb, apell, telf, telfs, corr, corrs, apod, img, ftos, contsAsoc);
         Utilitaria.saveFile(c, "Contacto.XML");
-=======
-        //Contacto c = new Contacto(nomb, corr, perfil, telf);
-        //Utilitaria.saveFile(c, "Contacto.XML");
->>>>>>> 529a1ede7a90d528751ec63667e0b179e537c115
         cancelar(event);
     }
-
+ 
+     @FXML
+    private void guardarEpresa(MouseEvent event) {
+        String nomb = nombre.getText();
+        String telf = telefono.getText();
+        String dept = departamento.getText();
+        String sitioW = sitioWeb.gettext();
+        String corr = correo.getText();
+        String img = perfil.getImage();        
+        
+        LinkedList<String> ftos = new LinkedList<>();
+        String[] datosFtos = fotos.getText().spilt("");
+        for(String d: datosFtos){
+            ftos.add(d);
+        } 
+        
+        ArrayList<Contacto> contsAsoc = new ArrayList<>();
+        Contacto[] datosContsAsoc = contactosAsociados.getText().split("/n");
+        for(Contacto d: datosContsAsoc){
+            contsAsoc.add(d);
+        }
+        if (nomb == null || telf == null || nomb.trim().isEmpty() || telf.trim().isEmpty()) {
+            mostrarAlerta("Nombre y Apellido son obligatorios");
+            return; // Sale del método si la validación falla
+        }      
+        
+        Contacto c = new Empresa(nomb, telf, dept, sitioW, corr, img, ftos, contsAsoc);
+        Utilitaria.saveFile(c, "Contacto.XML");
+        cancelar(event);
+    }
+    
+    private void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Alerta");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
 }

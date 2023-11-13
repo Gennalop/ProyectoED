@@ -12,7 +12,7 @@ public class Contacto implements Serializable {
     
     private static final long serialVersionUID = 8799656478674716638L;
     protected String nombre;
-    protected ArrayList<String> correos;
+    protected String correo;
     protected String perfil;
     protected LinkedList<String> fotos;
     protected String telefono;
@@ -20,6 +20,8 @@ public class Contacto implements Serializable {
 
     public Contacto(String nombre, String correo, String perfil, LinkedList<String> fotos, String telefono, ArrayList<Contacto> contactosAsociados) {
         this.nombre = nombre;
+        this.correo = correo;
+   
         this.perfil = perfil;
         this.fotos = fotos;
         this.telefono = telefono;
@@ -41,12 +43,16 @@ public class Contacto implements Serializable {
         return lista;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    public ArrayList<String> getCorreos() {
-        return correos;
+    public String getCorreo() {
+        return correo;
     }
 
     public String getPerfil() {
@@ -69,8 +75,8 @@ public class Contacto implements Serializable {
         this.nombre = nombre;
     }
 
-    public void setCorreos(ArrayList<String> correos) {
-        this.correos = correos;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public void setPerfil(String perfil) {
@@ -88,9 +94,4 @@ public class Contacto implements Serializable {
     public void setContactosAsociados(ArrayList<Contacto> contactosAsociados) {
         this.contactosAsociados = contactosAsociados;
     }
-    
-    public String toString(){
-        return nombre+"-"+telefono;
-    }
-    
-}
+}    

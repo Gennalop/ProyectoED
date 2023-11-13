@@ -8,7 +8,7 @@ public class Empresa extends Contacto{
     private String departamento;
     private String sitioWeb;
 
-    public Empresa(String departamento, String sitioWeb, String nombre, String correo, String perfil, LinkedList<String> fotos, String telefono, ArrayList<Contacto> contactosAsociados) {
+    public Empresa(String nombre, String telefono, String departamento, String sitioWeb, String correo, String perfil, LinkedList<String> fotos, ArrayList<Contacto> contactosAsociados) {
         super(nombre, correo, perfil, fotos, telefono, contactosAsociados);
         this.departamento = departamento;
         this.sitioWeb = sitioWeb;
@@ -24,6 +24,10 @@ public class Empresa extends Contacto{
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
     }
 
     public String getPerfil() {
@@ -54,6 +58,10 @@ public class Empresa extends Contacto{
         this.nombre = nombre;
     }
 
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public void setPerfil(String perfil) {
         this.perfil = perfil;
     }
@@ -69,6 +77,4 @@ public class Empresa extends Contacto{
     public void setContactosAsociados(ArrayList<Contacto> contactosAsociados) {
         this.contactosAsociados = contactosAsociados;
     }
-    
-    
 }

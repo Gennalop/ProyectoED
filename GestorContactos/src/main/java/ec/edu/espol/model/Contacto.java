@@ -17,21 +17,21 @@ public class Contacto implements Serializable {
     private static final long serialVersionUID = 8799656478674716638L;
     protected String nombre;
     protected String correo;
-    protected ArrayList<String> correos;
-    protected String perfil;
-    protected LinkedList<String> fotos;
+    protected Image perfil;
+    protected LinkedList<Image> fotos;
     protected String telefono;
-    protected ArrayList<Integer> telefonos;
     protected ArrayList<Contacto> contactosAsociados;
-    
 
-    public Contacto(String nombre, String correo, String perfil, String telefono) {
+    public Contacto(String nombre, String correo, Image perfil, LinkedList<Image> fotos, String telefono, ArrayList<Contacto> contactosAsociados) {
         this.nombre = nombre;
         this.correo = correo;
+   
         this.perfil = perfil;
+        this.fotos = fotos;
         this.telefono = telefono;
+        this.contactosAsociados = contactosAsociados;
     }
-    
+
     public LinkedList<Contacto> leerContacto(){
         LinkedList<Contacto> lista = new LinkedList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("nombre del archivo"))) {
@@ -46,32 +46,57 @@ public class Contacto implements Serializable {
 
         return lista;
     }
-    
-    public String getNombre() {
-        return nombre;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getNombre() {
+        return nombre;
     }
 
     public String getCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public Image getPerfil() {
+        return perfil;
     }
 
-    public Image getPerfil() {
-        return perfil;  
+    public LinkedList<Image> getFotos() {
+        return fotos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public ArrayList<Contacto> getContactosAsociados() {
+        return contactosAsociados;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public void setPerfil(Image perfil) {
         this.perfil = perfil;
     }
-    
-    public String toString(){
-        return nombre;
+
+    public void setFotos(LinkedList<Image> fotos) {
+        this.fotos = fotos;
     }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setContactosAsociados(ArrayList<Contacto> contactosAsociados) {
+        this.contactosAsociados = contactosAsociados;
+    }
+    
 }

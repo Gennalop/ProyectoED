@@ -10,9 +10,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -27,6 +29,8 @@ import javafx.stage.FileChooser;
 public class NuevoContactoController implements Initializable {
 
     @FXML
+    private VBox campos;
+    @FXML
     private ImageView imageView;
     @FXML
     private TextField nombre;
@@ -37,15 +41,21 @@ public class NuevoContactoController implements Initializable {
     @FXML
     private ComboBox<String> cbox;
     @FXML
-    private TextField apellido;
-    @FXML
-    private TextField apodo;
-    @FXML
     private VBox panelTelf;
     @FXML
     private VBox panelCorr;
     @FXML
     private VBox panelFotos;
+    //atributos de Persona
+    @FXML
+    private TextField apodo;
+    @FXML
+    private TextField apellido;
+    //atributos de una Empresa
+    @FXML
+    private TextField departamento;
+    @FXML
+    private TextField sitioWeb;
     
     String perfil = "img/usuarioDefault.png";
     
@@ -54,7 +64,55 @@ public class NuevoContactoController implements Initializable {
         imageView.setImage(new Image(perfil));
         imageView.setFitWidth(100); imageView.setFitHeight(100);
         cbox.getItems().addAll("Empresa", "Persona");
-    }    
+        cbox.setOnAction(this::cboxChanged);
+        campos.getChildren().clear();
+        
+    }
+
+    private void cboxChanged(ActionEvent event) {
+        String selectedItem = cbox.getSelectionModel().getSelectedItem();
+
+        // Limpiar el VBox específico para campos de persona o empresa
+        campos.getChildren().clear();
+
+        // Mostrar los campos según el tipo seleccionado en el ComboBox
+        if ("Persona".equals(selectedItem)) {
+            campos.getChildren().addAll(apellido, apodo);
+            VBox.setMargin(apellido, new Insets(5, 0, 5, 0));
+            VBox.setMargin(apodo, new Insets(0, 0, 5, 0));
+        } else if ("Empresa".equals(selectedItem)) {
+            campos.getChildren().addAll(departamento, sitioWeb);
+            VBox.setMargin(departamento, new Insets(5, 0, 5, 0));
+            VBox.setMargin(sitioWeb, new Insets(0, 0, 5, 0));
+        }
+    }
+    @FXML
+    private void guardar(MouseEvent event) {
+        String nomb = nombre.getText();
+        String telf = telefono.getText();
+        String corr = correo.getText();
+        LinkedList<String> correos = new LinkedList<String>();
+        correos.add(corr);
+        LinkedList<String> telefonos = new LinkedList<String>();
+        telefonos.add(telf);
+        String selectedItem = cbox.getSelectionModel().getSelectedItem();
+        if ("Persona".equals(selectedItem)) {
+            String apod = apodo.getText();
+            String apell = apellido.getText();
+            //ejempplo para guaardar un contacto
+            //los null son el perfil, lsita de fotos y lista de cpntactos asociados
+            Contacto c = new Persona(apod, apell, nomb, null, null, correos, telefonos, null);
+        } else if ("Empresa".equals(selectedItem)) {
+            String dept = departamento.getText();
+            String sitW = sitioWeb.getText();
+            
+        }        
+
+               
+        Utilitaria.saveFile(c, "Contacto.XML");
+        cancelar(event);
+    }
+
 
     @FXML
     private void insertarImagen(MouseEvent event) {

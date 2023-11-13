@@ -20,12 +20,15 @@ public class ItemContactoController implements Initializable {
     private ImageView imageView;
     @FXML
     private Label nombre;
+    
+    private Contacto contacto;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
 
     void setData(Contacto c) {
+        contacto = c;
         imageView.setImage(new Image(c.getPerfil()));
         nombre.setText(c.getNombre());
     }
@@ -33,9 +36,12 @@ public class ItemContactoController implements Initializable {
     @FXML
     private void infoContacto(MouseEvent event) {
         try {
+            System.out.println(this.nombre);
             FXMLLoader loader;
             loader = App.loadFXML("infoContacto");
             Scene sc = new Scene(loader.load());
+            InfoContactoController icc = loader.getController();
+            icc.setContacto(this.contacto);
             App.setScene(sc);
         } catch (IOException e) {
             e.printStackTrace();

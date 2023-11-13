@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Utilitaria {
@@ -37,15 +38,16 @@ public class Utilitaria {
         }
     }
     
-    //Revisar
-    public static List<Contacto> readFileContacto(String nomfile){
-        List<Contacto> retorno = new ArrayList<>();
+    //Revisar para usar generics y return List
+    public static ArrayList<Contacto> readFileContacto(String nomfile){
+        ArrayList<Contacto> retorno = new ArrayList<>();
         Contacto e;
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomfile))){
             while(true){
                 e = (Contacto) in.readObject();
                 System.out.println("Leyendo: "+e.toString());
                 retorno.add(e);
+                //retorno.addLast(e);
             }
         }catch(Exception ex){
         }

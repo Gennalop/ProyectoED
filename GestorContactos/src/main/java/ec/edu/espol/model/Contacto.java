@@ -12,20 +12,27 @@ public class Contacto implements Serializable {
     
     private static final long serialVersionUID = 8799656478674716638L;
     protected String nombre;
-    protected ArrayList<String> correos;
     protected String perfil;
     protected LinkedList<String> fotos;
-    protected String telefono;
-    protected ArrayList<Contacto> contactosAsociados;
+    protected LinkedList<Atributo<String>> correos;
+    protected LinkedList<Atributo<String>> telefonos;
+    protected ArrayList<Atributo<Contacto>> contactosAsociados;
 
-    public Contacto(String nombre, String correo, String perfil, LinkedList<String> fotos, String telefono, ArrayList<Contacto> contactosAsociados) {
+    public Contacto(String nombre, String perfil, LinkedList<String> fotos, LinkedList<Atributo<String>> telefonos, ArrayList<Atributo<Contacto>> contactosAsociados) {
         this.nombre = nombre;
         this.perfil = perfil;
         this.fotos = fotos;
-        this.telefono = telefono;
+        this.telefonos = telefonos;
         this.contactosAsociados = contactosAsociados;
     }
 
+    public Contacto(String nombre, String perfil, LinkedList<String> fotos) {
+        this.nombre = nombre;
+        this.perfil = perfil;
+        this.fotos = fotos;
+    }
+    
+    //Pasar a utilitaria y comparar con saveFile========================================================
     public LinkedList<Contacto> leerContacto(){
         LinkedList<Contacto> lista = new LinkedList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("nombre del archivo"))) {
@@ -37,15 +44,15 @@ public class Contacto implements Serializable {
         } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException:" + ex.getMessage());
         }
-
         return lista;
     }
+    //==================================================================================================
 
     public String getNombre() {
         return nombre;
     }
 
-    public ArrayList<String> getCorreos() {
+    public LinkedList<Atributo<String>> getCorreos() {
         return correos;
     }
 
@@ -57,11 +64,11 @@ public class Contacto implements Serializable {
         return fotos;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public LinkedList<Atributo<String>> getTelefono() {
+        return telefonos;
     }
 
-    public ArrayList<Contacto> getContactosAsociados() {
+    public ArrayList<Atributo<Contacto>> getContactosAsociados() {
         return contactosAsociados;
     }
 
@@ -69,7 +76,7 @@ public class Contacto implements Serializable {
         this.nombre = nombre;
     }
 
-    public void setCorreos(ArrayList<String> correos) {
+    public void setCorreos(LinkedList<Atributo<String>> correos) {
         this.correos = correos;
     }
 
@@ -81,16 +88,16 @@ public class Contacto implements Serializable {
         this.fotos = fotos;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setTelefono(LinkedList<Atributo<String>> telefono) {
+        this.telefonos = telefono;
     }
 
-    public void setContactosAsociados(ArrayList<Contacto> contactosAsociados) {
+    public void setContactosAsociados(ArrayList<Atributo<Contacto>> contactosAsociados) {
         this.contactosAsociados = contactosAsociados;
     }
     
     public String toString(){
-        return nombre+"-"+telefono;
+        return nombre+"-"+perfil;
     }
     
 }

@@ -42,12 +42,7 @@ public class ListContactoController implements Initializable {
         ivOpciones.setImage(new Image("img/iconoOpciones.png"));
         ivOpciones.setFitWidth(20); ivOpciones.setFitHeight(15);
         
-        
-        List<Contacto> contactos = Utilitaria.readFileContacto("Contacto.XML");
-        
-        //Prueba
-        //Contacto c = new Contacto("nombre", "corr", "img/iconoMas.png", "tel");
-        //contactos.add(c);
+        ArrayList<Contacto> contactos = Utilitaria.readFileContacto("Contacto.XML");
         
         for (int i=0; i<contactos.size(); i++) {
             System.out.println(contactos.get(i).toString());

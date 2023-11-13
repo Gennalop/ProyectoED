@@ -1,31 +1,25 @@
 package ec.edu.espol.model;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
-import javafx.scene.image.Image;
 
 public class Contacto implements Serializable {
     
     private static final long serialVersionUID = 8799656478674716638L;
     protected String nombre;
-    protected String correo;
-    protected Image perfil;
-    protected LinkedList<Image> fotos;
+    protected ArrayList<String> correos;
+    protected String perfil;
+    protected LinkedList<String> fotos;
     protected String telefono;
     protected ArrayList<Contacto> contactosAsociados;
 
-    public Contacto(String nombre, String correo, Image perfil, LinkedList<Image> fotos, String telefono, ArrayList<Contacto> contactosAsociados) {
+    public Contacto(String nombre, String correo, String perfil, LinkedList<String> fotos, String telefono, ArrayList<Contacto> contactosAsociados) {
         this.nombre = nombre;
-        this.correo = correo;
-   
         this.perfil = perfil;
         this.fotos = fotos;
         this.telefono = telefono;
@@ -47,23 +41,19 @@ public class Contacto implements Serializable {
         return lista;
     }
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
-    public String getCorreo() {
-        return correo;
+    public ArrayList<String> getCorreos() {
+        return correos;
     }
 
-    public Image getPerfil() {
+    public String getPerfil() {
         return perfil;
     }
 
-    public LinkedList<Image> getFotos() {
+    public LinkedList<String> getFotos() {
         return fotos;
     }
 
@@ -79,15 +69,15 @@ public class Contacto implements Serializable {
         this.nombre = nombre;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCorreos(ArrayList<String> correos) {
+        this.correos = correos;
     }
 
-    public void setPerfil(Image perfil) {
+    public void setPerfil(String perfil) {
         this.perfil = perfil;
     }
 
-    public void setFotos(LinkedList<Image> fotos) {
+    public void setFotos(LinkedList<String> fotos) {
         this.fotos = fotos;
     }
 
@@ -97,6 +87,10 @@ public class Contacto implements Serializable {
 
     public void setContactosAsociados(ArrayList<Contacto> contactosAsociados) {
         this.contactosAsociados = contactosAsociados;
+    }
+    
+    public String toString(){
+        return nombre+"-"+telefono;
     }
     
 }

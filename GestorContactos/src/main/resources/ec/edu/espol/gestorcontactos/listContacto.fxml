@@ -14,7 +14,7 @@
    <children>
       <HBox alignment="CENTER" prefHeight="47.0" prefWidth="280.0">
          <children>
-            <Label prefHeight="23.0" prefWidth="221.0" text="Contactos">
+            <Label prefHeight="23.0" prefWidth="214.0" text="Contactos">
                <font>
                   <Font name="Corbel Bold" size="20.0" />
                </font>

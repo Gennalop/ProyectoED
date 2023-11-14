@@ -99,18 +99,21 @@ public class NuevoContactoController implements Initializable {
         if ("Persona".equals(selectedItem)) {
             String apod = apodo.getText();
             String apell = apellido.getText();
-            //ejempplo para guaardar un contacto
+            //ejempplo para guardar un contacto
             //los null son el perfil, lsita de fotos y lista de cpntactos asociados
             Contacto c = new Persona(apod, apell, nomb, null, null, correos, telefonos, null);
+            Utilitaria.saveFile(c, "Contacto.XML");
+            cancelar(event);
         } else if ("Empresa".equals(selectedItem)) {
             String dept = departamento.getText();
             String sitW = sitioWeb.getText();
-            
-        }        
-
-               
-        Utilitaria.saveFile(c, "Contacto.XML");
-        cancelar(event);
+            //ejempplo para guardar un contacto
+            //los null son el perfil, lsita de fotos y lista de cpntactos asociados            
+            Contacto c = new Empresa(dept, sitW, nomb, null, null, correos, telefonos, null);
+            Utilitaria.saveFile(c, "Contacto.XML");
+            cancelar(event);            
+        }  
+        cancelar(event); 
     }
 
 

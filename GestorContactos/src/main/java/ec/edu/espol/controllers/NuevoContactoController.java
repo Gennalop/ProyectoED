@@ -8,7 +8,7 @@ import ec.edu.espol.model.Utilitaria;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.LinkedList;
+import util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -91,17 +91,19 @@ public class NuevoContactoController implements Initializable {
         String nomb = nombre.getText();
         String telf = telefono.getText();
         String corr = correo.getText();
-        LinkedList<String> correos = new LinkedList<String>();
-        correos.add(corr);
-        LinkedList<String> telefonos = new LinkedList<String>();
-        telefonos.add(telf);
+        LinkedList<String> correos = new LinkedList<>();
+        //correos.add(corr);
+        correos.addLast(corr);
+        LinkedList<String> telefonos = new LinkedList<>();
+        //telefonos.add(telf);
+        telefonos.addLast(telf);
         String selectedItem = cbox.getSelectionModel().getSelectedItem();
         if ("Persona".equals(selectedItem)) {
             String apod = apodo.getText();
             String apell = apellido.getText();
             //ejempplo para guardar un contacto
             //los null son el perfil, lsita de fotos y lista de cpntactos asociados
-            Contacto c = new Persona(apod, apell, nomb, null, null, correos, telefonos, null);
+            Contacto c = new Persona(apod, apell, nomb, perfil, null, correos, telefonos, null);
             Utilitaria.saveFile(c, "Contacto.XML");
             cancelar(event);
         } else if ("Empresa".equals(selectedItem)) {
@@ -109,10 +111,16 @@ public class NuevoContactoController implements Initializable {
             String sitW = sitioWeb.getText();
             //ejempplo para guardar un contacto
             //los null son el perfil, lsita de fotos y lista de cpntactos asociados            
-            Contacto c = new Empresa(dept, sitW, nomb, null, null, correos, telefonos, null);
+            Contacto c = new Empresa(dept, sitW, nomb, perfil, null, correos, telefonos, null);
             Utilitaria.saveFile(c, "Contacto.XML");
             cancelar(event);            
-        }  
+        } 
+        if (nombre.getText().equals("") || telefono.getText().equals("")) {
+            mostrarAlerta("Nombre y Telefono1 son obligatorios");
+            return; // Sale del método si la validación falla
+        } else{ 
+            cancelar(event);
+        }        
         cancelar(event); 
     }
 
@@ -150,15 +158,6 @@ public class NuevoContactoController implements Initializable {
         alert.showAndWait();
     }
 
-    @FXML
-    private void guardar(MouseEvent event) {
-        if (nombre.getText().equals("") || telefono.getText().equals("")) {
-            mostrarAlerta("Nombre y Telefono1 son obligatorios");
-            return; // Sale del método si la validación falla
-        } else{ 
-            cancelar(event);
-        }
-    }
 
     @FXML
     private void otroTelf(MouseEvent event) {

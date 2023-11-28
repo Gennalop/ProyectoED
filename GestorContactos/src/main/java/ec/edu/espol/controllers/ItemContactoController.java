@@ -28,10 +28,16 @@ public class ItemContactoController implements Initializable {
     }    
 
     void setData(Contacto c) {
-        contacto = c;
-        imageView.setImage(new Image(c.getPerfil()));
-        nombre.setText(c.getNombre());
+    contacto = c;
+    try {
+        Image image = new Image(c.getPerfil());
+        imageView.setImage(image);
+    } catch (Exception e) {
+        // Manejar la excepción, por ejemplo, imprimir un mensaje de error
+        System.err.println("Error al cargar la imagen: " + e.getMessage());
     }
+    nombre.setText(c.getNombre());
+}
 
     @FXML
     private void infoContacto(MouseEvent event) {

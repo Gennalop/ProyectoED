@@ -1,7 +1,7 @@
 package ec.edu.espol.model;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
+import util.ArrayList;
+import util.LinkedList;
 
 public class Empresa extends Contacto{
     private String departamento;

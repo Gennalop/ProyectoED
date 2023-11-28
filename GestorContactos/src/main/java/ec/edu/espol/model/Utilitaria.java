@@ -7,9 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import util.ArrayList;
+import util.LinkedList;
 
 public class Utilitaria {
     
@@ -46,8 +45,8 @@ public class Utilitaria {
             while(true){
                 e = (Contacto) in.readObject();
                 System.out.println("Leyendo: "+e.toString());
-                retorno.add(e);
-                //retorno.addLast(e);
+                //retorno.add(e);
+                retorno.addLast(e);
             }
         }catch(Exception ex){
         }

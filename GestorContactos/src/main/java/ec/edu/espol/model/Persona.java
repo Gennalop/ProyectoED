@@ -1,6 +1,6 @@
 package ec.edu.espol.model;
 
-import java.util.LinkedList;
+import util.LinkedList;
 
 public class Persona extends Contacto{
     private String apodo;

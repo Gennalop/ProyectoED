@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
-import java.util.LinkedList;
+import util.LinkedList;
 
 public class Contacto implements Serializable {
     

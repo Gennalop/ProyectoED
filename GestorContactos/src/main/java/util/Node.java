@@ -5,11 +5,13 @@
  */
 package util;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Usuario
  */
-public class Node<E> {
+public class Node<E> implements Serializable {
     
     private Node<E> next;
     private Node<E> previous;

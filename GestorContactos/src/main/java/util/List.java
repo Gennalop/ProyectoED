@@ -5,13 +5,14 @@
  */
 package util;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  *
  * @author Usuario
  */
-public interface List<E> extends Iterable<E>{
+public interface List<E> extends Iterable<E>, Serializable{
     
     public int size();
 

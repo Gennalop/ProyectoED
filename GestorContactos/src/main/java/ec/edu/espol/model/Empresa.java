@@ -1,6 +1,6 @@
 package ec.edu.espol.model;
 
-import util.ArrayList;
+
 import util.LinkedList;
 
 public class Empresa extends Contacto{

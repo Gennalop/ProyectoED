@@ -1,6 +1,8 @@
 package ec.edu.espol.model;
 
-public class Atributo<E> {
+import java.io.Serializable;
+
+public class Atributo<E> implements Serializable{
     
     private String nombre;
     private E contenido;

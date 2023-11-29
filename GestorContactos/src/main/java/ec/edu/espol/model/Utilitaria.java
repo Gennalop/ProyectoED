@@ -7,10 +7,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import util.ArrayList;
-import util.LinkedList;
 
-public class Utilitaria {
+
+public class Utilitaria implements Serializable{
     
     public static <E> void saveFile(E e, String nomfile) {
         System.out.println("Guardando: " + e.toString());
@@ -49,6 +50,7 @@ public class Utilitaria {
                 retorno.addLast(e);
             }
         }catch(Exception ex){
+            System.out.println(ex);
         }
         return retorno;
     }

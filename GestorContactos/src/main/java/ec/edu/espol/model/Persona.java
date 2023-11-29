@@ -1,5 +1,6 @@
 package ec.edu.espol.model;
 
+import java.io.Serializable;
 import util.LinkedList;
 
 public class Persona extends Contacto{

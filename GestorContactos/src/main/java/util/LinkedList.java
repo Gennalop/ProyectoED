@@ -5,6 +5,7 @@
  */
 package util;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -12,7 +13,7 @@ import java.util.Iterator;
  *
  * @author Usuario
  */
-public class LinkedList<E> implements List<E>{
+public class LinkedList<E> implements List<E>, Serializable{
     
     private Node<E> last;
 
@@ -167,7 +168,7 @@ public class LinkedList<E> implements List<E>{
         return null;
     }  
     
-    //este puede ser usado como for each
+    //este puede ser usado como for each. Es un iterador normal 
     @Override
     public Iterator<E> iterator(){
         Iterator<E> it = new Iterator<>(){
@@ -186,6 +187,35 @@ public class LinkedList<E> implements List<E>{
                 return e;
             }
             
+        };
+        return it;
+    }
+    
+    public Iterator<E> reverseIterator(){
+        Iterator<E> itAux = this.iterator();
+        LinkedList<E> lAux = new LinkedList<>();
+        
+        while (itAux.hasNext()){
+            lAux.addFirst(itAux.next());
+        }
+        
+        Iterator<E> it = new Iterator<>(){
+            Node<E> cursor = lAux.last.getNext();
+            boolean esPrimero = true;
+            
+            @Override
+            public boolean hasNext() {
+                return esPrimero || cursor != last.getNext();
+            }
+
+            @Override
+            public E next() {
+                E e = cursor.getContent();
+                cursor = cursor.getNext();
+                esPrimero = false;
+                return e;
+            }
+        
         };
         return it;
     }

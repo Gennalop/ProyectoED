@@ -11,19 +11,24 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.controllers.InfoContactoController">
    <children>
-      <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="280.0">
+      <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="265.0" spacing="5.0">
          <children>
-            <Label fx:id="tipoContacto">
+            <ImageView fx:id="ivEliminar" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#eliminarContacto" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="ivEditar" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#editarContacto" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="tipoContacto" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="205.0">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
          </children>
          <opaqueInsets>
-            <Insets right="5.0" top="10.0" />
+            <Insets left="5.0" right="5.0" top="10.0" />
          </opaqueInsets>
          <VBox.margin>
-            <Insets right="5.0" top="10.0" />
+            <Insets left="5.0" right="5.0" top="10.0" />
          </VBox.margin>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
@@ -33,7 +38,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Button>
-            <ImageView fx:id="imageView" fitHeight="87.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="ivPerfil" fitHeight="87.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="sgte" mnemonicParsing="false" onMouseClicked="#siguiente" text="&gt;" visible="false">
                <HBox.margin>
                   <Insets right="20.0" />
@@ -51,7 +56,7 @@
       </Label>
       <ScrollPane prefHeight="301.0" prefWidth="280.0">
          <content>
-            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="299.0" prefWidth="252.0" spacing="15.0">
+            <VBox alignment="TOP_CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="252.0" spacing="15.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -59,7 +64,37 @@
                   <Insets left="20.0" top="15.0" />
                </padding>
                <children>
-                  <VBox fx:id="telefonos" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
+                  <VBox fx:id="telefonos1" alignment="CENTER" layoutX="30.0" layoutY="25.0" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
+                     <children>
+                        <Label fx:id="lbPrimerAtributo">
+                           <font>
+                              <Font name="Corbel Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="7.0" left="10.0" top="7.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="telefonos11" alignment="CENTER" layoutX="30.0" layoutY="25.0" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
+                     <children>
+                        <Label fx:id="lbSegundoAtributo">
+                           <font>
+                              <Font name="Corbel Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="7.0" left="10.0" top="7.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="vbxTelefonos" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
                      <children>
                         <Label text="Teléfono">
                            <font>
@@ -77,9 +112,9 @@
                         <Insets bottom="7.0" left="10.0" top="7.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="contactos" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
+                  <VBox fx:id="vbxCorreos" layoutX="30.0" layoutY="111.0" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
                      <children>
-                        <Label text="Contactos Relacionados">
+                        <Label text="Correo">
                            <font>
                               <Font name="Corbel Bold" size="12.0" />
                            </font>
@@ -92,14 +127,14 @@
                         <Insets bottom="7.0" left="10.0" top="7.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="correos" layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
+                  <VBox fx:id="contactos" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
                      <children>
-                        <Label text="Correos">
+                        <Label text="Contactos Relacionados">
                            <font>
                               <Font name="Corbel Bold" size="12.0" />
                            </font>
                            <VBox.margin>
-                              <Insets left="5.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                      </children>

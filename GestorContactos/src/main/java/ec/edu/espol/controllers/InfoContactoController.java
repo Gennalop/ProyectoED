@@ -23,8 +23,6 @@ public class InfoContactoController implements Initializable {
     @FXML
     private Label tipoContacto;
     @FXML
-    private ImageView imageView;
-    @FXML
     private Label nombre;
     @FXML
     private Button ant;
@@ -32,10 +30,6 @@ public class InfoContactoController implements Initializable {
     private Button sgte;
     @FXML
     private VBox contactos;
-    @FXML
-    private VBox telefonos;
-    @FXML
-    private VBox correos;
     @FXML
     private VBox fotos;
     @FXML
@@ -49,9 +43,32 @@ public class InfoContactoController implements Initializable {
     private Contacto contacto;
     private int currentPos;
     private int cont=0;
+    @FXML
+    private ImageView ivEliminar;
+    @FXML
+    private ImageView ivEditar;
+    @FXML
+    private ImageView ivPerfil;
+    @FXML
+    private VBox telefonos1;
+    @FXML
+    private Label lbPrimerAtributo;
+    @FXML
+    private VBox telefonos11;
+    @FXML
+    private Label lbSegundoAtributo;
+    @FXML
+    private VBox vbxTelefonos;
+    @FXML
+    private VBox vbxCorreos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        ivEditar.setImage(new Image("img/iconoEditar.png"));
+        ivEditar.setFitWidth(20); ivEditar.setFitHeight(20);
+        ivEliminar.setImage(new Image("img/iconoEliminar.png"));
+        ivEliminar.setFitWidth(20); ivEditar.setFitHeight(20);
         contactosList = Utilitaria.readFileContacto("Contacto.XML");
         if(contactosList.size()>1){
             ant.setVisible(true);
@@ -148,7 +165,7 @@ public class InfoContactoController implements Initializable {
         //Mover a otro metodo showData
         System.out.println(""+currentPos);
         nombre.setText(contacto.getNombre());
-        imageView.setImage(new Image(contacto.getPerfil()));
+        //imageView.setImage(new Image(contacto.getPerfil()));
         if(contacto.getFotos().size()!=0)
             imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
         
@@ -168,6 +185,22 @@ public class InfoContactoController implements Initializable {
             Label lb3 = new Label();
             lb3.setText(ct.getNombre());
             contactos.getChildren().add(lb3);
+        }
+    }
+
+    @FXML
+    private void eliminarContacto(MouseEvent event) {
+    }
+
+    @FXML
+    private void editarContacto(MouseEvent event) {
+        try {
+            FXMLLoader loader;
+            loader = App.loadFXML("NOMBREFXML");
+            Scene sc = new Scene(loader.load());
+            App.setScene(sc);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     

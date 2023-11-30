@@ -1,50 +1,36 @@
 package ec.edu.espol.model;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
-import util.LinkedList;
+
+import util.List;
 
 public class Contacto implements Serializable {
     
     private static final long serialVersionUID = 8799656478674716638L;
+    protected long idContacto = 0; 
     protected String nombre;
     protected String perfil;
-    protected LinkedList<String> fotos;
-    protected LinkedList<String> correos;
-    protected LinkedList<String> telefonos;
-    protected LinkedList<Contacto> contactos;
+    protected List<String> fotos;
+    protected List<AtributoComplejo> ubicacion;
+    protected List<AtributoComplejo> correos;
+    protected List<AtributoComplejo> telefonos;
+    protected List<Contacto> contactos;
 
-    public Contacto(String nombre, String perfil, LinkedList<String> fotos, LinkedList<String> correos, LinkedList<String> telefonos, LinkedList<Contacto> contactos) {
+    public Contacto(String nombre, String perfil, List<String> fotos, List<AtributoComplejo> ubicacion, List<AtributoComplejo> correos, List<AtributoComplejo> telefonos, List<Contacto> contactos) {
+        this.idContacto = idContacto++;
         this.nombre = nombre;
         this.perfil = perfil;
         this.fotos = fotos;
+        this.ubicacion = ubicacion;
         this.correos = correos;
         this.telefonos = telefonos;
         this.contactos = contactos;
     }
     
-    
-    //Aplicar clase atributo
-    /*
-    protected LinkedList<String> fotos;
-    protected LinkedList<Atributo<String>> correos;
-    protected LinkedList<Atributo<String>> telefonos;
-    protected ArrayList<Atributo<Contacto>> contactosAsociados;
-    
-    public Contacto(String nombre, String perfil, LinkedList<String> fotos, LinkedList<Atributo<String>> telefonos, ArrayList<Atributo<Contacto>> contactosAsociados) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.perfil = perfil;
-        this.fotos = fotos;
-        this.telefonos = telefonos;
-        this.contactosAsociados = contactosAsociados;
-    }*/
-    
     //Pasar a utilitaria y comparar con saveFile========================================================
-    public LinkedList<Contacto> leerContacto(){
+    
+    
+/*    public LinkedList<Contacto> leerContacto(){
         LinkedList<Contacto> lista = new LinkedList<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("nombre del archivo"))) {
             lista = (LinkedList<Contacto>) in.readObject();
@@ -56,8 +42,16 @@ public class Contacto implements Serializable {
             System.out.println("ClassNotFoundException:" + ex.getMessage());
         }
         return lista;
-    }
+    }*/
     //==================================================================================================
+
+    public long getIdContacto() {
+        return idContacto;
+    }
+
+    public void setIdContacto(long idContacto) {
+        this.idContacto = idContacto;
+    }
 
     public String getNombre() {
         return nombre;
@@ -75,36 +69,48 @@ public class Contacto implements Serializable {
         this.perfil = perfil;
     }
 
-    public LinkedList<String> getFotos() {
+    public List<String> getFotos() {
         return fotos;
     }
 
-    public void setFotos(LinkedList<String> fotos) {
+    public void setFotos(List<String> fotos) {
         this.fotos = fotos;
     }
 
-    public LinkedList<String> getCorreos() {
+    public List<AtributoComplejo> getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(List<AtributoComplejo> ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public List<AtributoComplejo> getCorreos() {
         return correos;
     }
 
-    public void setCorreos(LinkedList<String> correos) {
+    public void setCorreos(List<AtributoComplejo> correos) {
         this.correos = correos;
     }
 
-    public LinkedList<String> getTelefonos() {
+    public List<AtributoComplejo> getTelefonos() {
         return telefonos;
     }
 
-    public void setTelefonos(LinkedList<String> telefonos) {
+    public void setTelefonos(List<AtributoComplejo> telefonos) {
         this.telefonos = telefonos;
     }
 
-    public LinkedList<Contacto> getContactos() {
+    public List<Contacto> getContactos() {
         return contactos;
     }
 
-    public void setContactos(LinkedList<Contacto> contactos) {
+    public void setContactos(List<Contacto> contactos) {
         this.contactos = contactos;
+    }
+
+    public String toString(){
+        return this.idContacto + "-" + this.nombre;
     }
 
 }

@@ -5,7 +5,6 @@ import ec.edu.espol.model.Contacto;
 import ec.edu.espol.model.Utilitaria;
 import java.io.IOException;
 import java.net.URL;
-import util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import util.ArrayList;
 
 public class InfoContactoController implements Initializable {
 
@@ -149,18 +149,21 @@ public class InfoContactoController implements Initializable {
         System.out.println(""+currentPos);
         nombre.setText(contacto.getNombre());
         imageView.setImage(new Image(contacto.getPerfil()));
-        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        if(contacto.getFotos().size()!=0)
+            imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
         
+        /*
         for(String s:contacto.getTelefonos()){
             Label lb = new Label();
             lb.setText(s);
             telefonos.getChildren().add(lb);
-        }
+        }*/
+        /*
         for(String s:contacto.getCorreos()){
             Label lb2 = new Label();
             lb2.setText(s);
             correos.getChildren().add(lb2);
-        }
+        }*/
         for(Contacto ct : contacto.getContactos()){
             Label lb3 = new Label();
             lb3.setText(ct.getNombre());

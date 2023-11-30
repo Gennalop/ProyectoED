@@ -7,7 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import util.LinkedList;
+import java.util.LinkedList;
 
 public class App extends Application {
 
@@ -41,47 +41,6 @@ public class App extends Application {
     }
     
     public static void main(String[] args) {
-        
-        /*LinkedList<String> contactosLK2 = new LinkedList<>();
-        LinkedList<String> contactosco2 = new LinkedList<>();
-        LinkedList<String> contactost2 = new LinkedList<>();
-        LinkedList<Contacto> contactosc2 = new LinkedList<>();
-        //contactosLK2.add("img/iconoFiltrar.png");
-        contactosLK2.addLast("img/iconoFiltrar.png");
-        
-        //contactosLK2.add("img/iconoFavorito.png");
-        contactosLK2.addLast("img/iconoFavorito.png");
-        
-        //contactosLK2.add("img/iconoBuscar.png");
-        contactosLK2.addLast("img/iconoBuscar.png");
-        
-        Contacto c2 = new Contacto("Mar", "img/usuarioDefault.png", contactosLK2, contactosco2, contactost2, contactosc2);
-        
-        LinkedList<String> contactosLK1 = new LinkedList<>();
-        LinkedList<String> contactosco1 = new LinkedList<>();
-        /*contactosco1.add("a.gmail.com");
-        contactosco1.add("b.gmail.com");
-        contactosLK1.add("img/iconoMas.png");
-        contactosLK1.add("img/iconoOpciones.png");*/
-       /* contactosco1.addLast("a.gmail.com");
-        contactosco1.addLast("b.gmail.com");
-        contactosLK1.addLast("img/iconoMas.png");
-        contactosLK1.addLast("img/iconoOpciones.png");
-        LinkedList<String> contactost1 = new LinkedList<>();
-        //contactost1.add("0000000");
-        // contactost1.add("1111111");
-        contactost1.addLast("0000000");
-        contactost1.addLast("1111111");
-        LinkedList<Contacto> contactosc1 = new LinkedList<>();
-        //contactosc1.add(c2);
-        contactosc1.addLast(c2);
-        
-        Contacto c1 = new Contacto("Pepe", "img/usuarioDefault.png", contactosLK1, contactosco1, contactost1, contactosc1);
-        
-        
-        Utilitaria.saveFile(c1, "Contacto.XML");
-        Utilitaria.saveFile(c2, "Contacto.XML");
-       */
         launch();
     }
 

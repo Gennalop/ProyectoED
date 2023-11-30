@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -14,17 +16,36 @@
    <children>
       <HBox alignment="CENTER" prefHeight="47.0" prefWidth="280.0">
          <children>
-            <Label prefHeight="23.0" prefWidth="214.0" text="Contactos">
+            <Label prefHeight="23.0" prefWidth="151.0" text="Contactos">
                <font>
                   <Font name="Corbel Bold" size="20.0" />
                </font>
-            </Label>
-            <ImageView fx:id="ivNuevo" fitHeight="25.0" fitWidth="20.0" onMouseClicked="#nuevoContacto" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
-                  <Insets bottom="2.0" right="5.0" />
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="86.0">
+               <children>
+                  <ComboBox fx:id="cbxOrden" layoutX="-53.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#ordenar" opacity="0.0" prefHeight="25.0" prefWidth="138.0" />
+                  <ImageView fx:id="ivOrdenar" disable="true" fitHeight="20.0" fitWidth="20.0" layoutX="65.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="38.0" fitWidth="66.0" layoutX="-1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
+            <ImageView fx:id="ivFiltro" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#filtrar" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="ivOpciones" fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="ivNuevo" fitHeight="25.0" fitWidth="20.0" onMouseClicked="#nuevoContacto" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets bottom="2.0" left="5.0" right="5.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="ivOpciones" fitHeight="15.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </ImageView>
          </children>
       </HBox>
       <TabPane prefHeight="452.0" prefWidth="280.0" tabClosingPolicy="UNAVAILABLE">
@@ -36,8 +57,9 @@
                         <Insets left="10.0" top="10.0" />
                      </padding>
                      <content>
-                        <VBox fx:id="panelContactos" prefHeight="404.0" prefWidth="258.0" />
-                     </content></ScrollPane>
+                        <VBox fx:id="panelContactos" prefHeight="404.0" prefWidth="258.0" spacing="5.0" />
+                     </content>
+                  </ScrollPane>
             </content>
           </Tab>
             <Tab text="Favoritos">

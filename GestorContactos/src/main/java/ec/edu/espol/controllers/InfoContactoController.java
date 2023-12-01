@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import util.List;
 
 public class InfoContactoController implements Initializable {
@@ -47,7 +48,6 @@ public class InfoContactoController implements Initializable {
     private ImageView ivEditar;
     @FXML
     private ImageView ivPerfil;
-    @FXML
     private ImageView ivFotos;
     
     private Contacto contacto;
@@ -74,58 +74,59 @@ public class InfoContactoController implements Initializable {
          
     }
     
-    @FXML
-    private void siguiente(MouseEvent event) {
-        try {
-            FXMLLoader loader = App.loadFXML("infoContacto");
-            Scene sc = new Scene(loader.load());
-            InfoContactoController icc = loader.getController();
+@FXML
+private void siguiente(MouseEvent event) {
+    try {
+        FXMLLoader loader = App.loadFXML("infoContacto");
+        Scene sc = new Scene(loader.load());
+        InfoContactoController icc = loader.getController();
 
-            if (!contactsDisplayed.isEmpty()) {
-                currentPos = (currentPos + 1) % contactsDisplayed.size();
-                System.out.println("Siguiente - Nuevo índice: " + currentPos);
-                Contacto c = contactsDisplayed.get(currentPos);
-                System.out.println("Siguiente - Mostrando contacto: " + c);
-                icc.setContacto(c);
-            } else {
-                System.out.println("Siguiente - Lista vacía");
-            }
-
-            App.setScene(sc);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!contactsDisplayed.isEmpty()) {
+            currentPos = (currentPos + 1) % contactsDisplayed.size();
+            System.out.println("Siguiente - Nuevo índice: " + currentPos);
+            Contacto c = contactsDisplayed.get(currentPos);
+            System.out.println("Siguiente - Mostrando contacto: " + c);
+            icc.setContacto(c);
+        } else {
+            System.out.println("Siguiente - Lista vacía");
         }
+
+        App.setScene(sc);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
-    @FXML
-    private void anterior(MouseEvent event) {
-        try {
-            FXMLLoader loader = App.loadFXML("infoContacto");
-            Scene sc = new Scene(loader.load());
-            InfoContactoController icc = loader.getController();
+@FXML
+private void anterior(MouseEvent event) {
+    try {
+        FXMLLoader loader = App.loadFXML("infoContacto");
+        Scene sc = new Scene(loader.load());
+        InfoContactoController icc = loader.getController();
 
-            if (!contactsDisplayed.isEmpty()) {
-                currentPos = (currentPos - 1 + contactsDisplayed.size()) % contactsDisplayed.size();
-                System.out.println("Anterior - Nuevo índice: " + currentPos);
-                Contacto c = contactsDisplayed.get(currentPos);
-                System.out.println("Anterior - Mostrando contacto: " + c);
-                icc.setContacto(c);
-            } else {
-                System.out.println("Anterior - Lista vacía");
-            }
-
-            App.setScene(sc);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!contactsDisplayed.isEmpty()) {
+            currentPos = (currentPos - 1 + contactsDisplayed.size()) % contactsDisplayed.size();
+            System.out.println("Anterior - Nuevo índice: " + currentPos);
+            Contacto c = contactsDisplayed.get(currentPos);
+            System.out.println("Anterior - Mostrando contacto: " + c);
+            icc.setContacto(c);
+        } else {
+            System.out.println("Anterior - Lista vacía");
         }
-    }
 
+        App.setScene(sc);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+    
     @FXML
     private void anteriorFoto(MouseEvent event) {
         if(cont == 0)
             cont = contacto.getFotos().size();
         cont--;
-        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
     }
     
     @FXML
@@ -133,9 +134,8 @@ public class InfoContactoController implements Initializable {
         if(cont == contacto.getFotos().size() - 1)
             cont = -1;
         cont++;
-        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
     }
-
 
     @FXML
     private void volver(MouseEvent event) {
@@ -168,15 +168,8 @@ public class InfoContactoController implements Initializable {
         };
         currentPos = contactsDisplayed.getIndexOf(contacto, cmp);
         
-        if (contacto.getFotos().size()>1){
-            antFoto.setVisible(true);
-            sgteFoto.setVisible(true);
-        }
-        
         nombre.setText(contacto.getNombre());
         ivPerfil.setImage(new Image(contacto.getPerfil()));
-        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
-        
         
         if(c.getClass().equals(Persona.class)){
             tipoContacto.setText("Persona");
@@ -203,44 +196,67 @@ public class InfoContactoController implements Initializable {
         VBox correos = showComplexAtributte("Correo", c.getCorreos());
         VBox ubicacion = showComplexAtributte("Ubicacion", c.getUbicacion());
         panelInformacion.getChildren().addAll(telefonos, correos, ubicacion);
-        /*
-        if(!c.getTelefonos().isEmpty())
-            panelInformacion.getChildren().add(showAtributte("Telefono", ));
         
-        if(!c.getTelefonos().isEmpty())
-            panelInformacion.getChildren().add(showAtributte("Telefono", ));
-        if(contacto.getFotos().size()!=0)
-            ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
-        /*
-        if (contacto.getFotos().size()>1){
+        if (c.getFotos().size()>1){
             antFoto.setVisible(true); sgteFoto.setVisible(true);
         }
         
-        //Implementar un metodo para hacer esta busqueda
-        for(int i = 0; i < allContacts.size(); i++){
-            if(allContacts.get(i).getNombre().equals(contacto.getNombre()))
-                currentPos = i;
-        }*/
-        
-        
-        
-        /*
-        for(String s:contacto.getTelefonos()){
-            Label lb = new Label();
-            lb.setText(s);
-            telefonos.getChildren().add(lb);
-        }*/
-        /*
-        for(String s:contacto.getCorreos()){
-            Label lb2 = new Label();
-            lb2.setText(s);
-            correos.getChildren().add(lb2);
+        if(c.getFotos().size()!=0){          
+        imvFotos.setImage(new Image(c.getFotos().get(0)));
         }
-        for(Contacto ct : contacto.getContactos()){
-            Label lb3 = new Label();
-            lb3.setText(ct.getNombre());
-            contactos.getChildren().add(lb3);
-        }*/
+        
+        if(c.getContactos()!=null){
+            VBox contactos = showAtributteContact("Contactos Asociados", c.getContactos());
+            panelInformacion.getChildren().add(0,contactos);
+        }
+        
+    }
+    
+    private VBox showAtributteContact(String titulo, List<Contacto> contactos){
+        VBox vbx = new VBox();
+        vbx.setMaxHeight(30); vbx.setMaxWidth(232);
+        vbx.setAlignment(Pos.CENTER_LEFT);
+        vbx.setStyle("-fx-background-color:  #e1e1e1" );
+        vbx.setPadding(new Insets(10,10,10,10));
+        vbx.setSpacing(10);
+        
+        Label label = new Label(titulo);
+        label.setStyle("-fx-font-weight: bold;");
+        
+        vbx.getChildren().add(label);
+        for (Contacto c : contactos) {
+            HBox hbox = new HBox();
+            hbox.setId(c.getIdContacto() + "");
+            hbox.setAlignment(Pos.CENTER_LEFT);
+            hbox.setSpacing(10);
+            hbox.setMaxHeight(25);
+            hbox.setMaxWidth(222);
+
+            ImageView perfil = new ImageView(new Image(c.getPerfil()));
+            perfil.setFitWidth(20);
+            perfil.setFitHeight(20);
+            perfil.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t) -> {
+                try {
+                    FXMLLoader loader;
+                    loader = App.loadFXML("infoContacto");
+                    Scene sc = new Scene(loader.load());
+                    InfoContactoController icc = loader.getController();
+                    icc.setContacto(c);
+                    App.setScene(sc);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            
+            Label nombre = new Label(c.getNombre());
+            nombre.setTextFill(Color.BLACK);;
+            nombre.setMaxWidth(150);
+            nombre.setMinWidth(150);
+            hbox.getChildren().addAll(perfil, nombre);
+            
+            vbx.getChildren().add(hbox);
+        }
+        return vbx;
     }
     
     private HBox showAtributte(String titulo, String contenido){

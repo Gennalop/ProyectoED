@@ -257,7 +257,7 @@ public class InfoContactoController implements Initializable {
     private void editarContacto(MouseEvent event) {
         try {
             FXMLLoader loader;
-            loader = App.loadFXML("NOMBREFXML");
+            loader = App.loadFXML("editarContacto");
             Scene sc = new Scene(loader.load());
             App.setScene(sc);
         } catch (IOException e) {

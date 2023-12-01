@@ -47,6 +47,7 @@ public class InfoContactoController implements Initializable {
     private ImageView ivEditar;
     @FXML
     private ImageView ivPerfil;
+    @FXML
     private ImageView ivFotos;
     
     private Contacto contacto;
@@ -73,59 +74,58 @@ public class InfoContactoController implements Initializable {
          
     }
     
-@FXML
-private void siguiente(MouseEvent event) {
-    try {
-        FXMLLoader loader = App.loadFXML("infoContacto");
-        Scene sc = new Scene(loader.load());
-        InfoContactoController icc = loader.getController();
+    @FXML
+    private void siguiente(MouseEvent event) {
+        try {
+            FXMLLoader loader = App.loadFXML("infoContacto");
+            Scene sc = new Scene(loader.load());
+            InfoContactoController icc = loader.getController();
 
-        if (!contactsDisplayed.isEmpty()) {
-            currentPos = (currentPos + 1) % contactsDisplayed.size();
-            System.out.println("Siguiente - Nuevo índice: " + currentPos);
-            Contacto c = contactsDisplayed.get(currentPos);
-            System.out.println("Siguiente - Mostrando contacto: " + c);
-            icc.setContacto(c);
-        } else {
-            System.out.println("Siguiente - Lista vacía");
+            if (!contactsDisplayed.isEmpty()) {
+                currentPos = (currentPos + 1) % contactsDisplayed.size();
+                System.out.println("Siguiente - Nuevo índice: " + currentPos);
+                Contacto c = contactsDisplayed.get(currentPos);
+                System.out.println("Siguiente - Mostrando contacto: " + c);
+                icc.setContacto(c);
+            } else {
+                System.out.println("Siguiente - Lista vacía");
+            }
+
+            App.setScene(sc);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        App.setScene(sc);
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
 
-@FXML
-private void anterior(MouseEvent event) {
-    try {
-        FXMLLoader loader = App.loadFXML("infoContacto");
-        Scene sc = new Scene(loader.load());
-        InfoContactoController icc = loader.getController();
+    @FXML
+    private void anterior(MouseEvent event) {
+        try {
+            FXMLLoader loader = App.loadFXML("infoContacto");
+            Scene sc = new Scene(loader.load());
+            InfoContactoController icc = loader.getController();
 
-        if (!contactsDisplayed.isEmpty()) {
-            currentPos = (currentPos - 1 + contactsDisplayed.size()) % contactsDisplayed.size();
-            System.out.println("Anterior - Nuevo índice: " + currentPos);
-            Contacto c = contactsDisplayed.get(currentPos);
-            System.out.println("Anterior - Mostrando contacto: " + c);
-            icc.setContacto(c);
-        } else {
-            System.out.println("Anterior - Lista vacía");
+            if (!contactsDisplayed.isEmpty()) {
+                currentPos = (currentPos - 1 + contactsDisplayed.size()) % contactsDisplayed.size();
+                System.out.println("Anterior - Nuevo índice: " + currentPos);
+                Contacto c = contactsDisplayed.get(currentPos);
+                System.out.println("Anterior - Mostrando contacto: " + c);
+                icc.setContacto(c);
+            } else {
+                System.out.println("Anterior - Lista vacía");
+            }
+
+            App.setScene(sc);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        App.setScene(sc);
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
 
-    
     @FXML
     private void anteriorFoto(MouseEvent event) {
         if(cont == 0)
             cont = contacto.getFotos().size();
         cont--;
-        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
     }
     
     @FXML
@@ -133,8 +133,9 @@ private void anterior(MouseEvent event) {
         if(cont == contacto.getFotos().size() - 1)
             cont = -1;
         cont++;
-        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
     }
+
 
     @FXML
     private void volver(MouseEvent event) {
@@ -167,8 +168,15 @@ private void anterior(MouseEvent event) {
         };
         currentPos = contactsDisplayed.getIndexOf(contacto, cmp);
         
+        if (contacto.getFotos().size()>1){
+            antFoto.setVisible(true);
+            sgteFoto.setVisible(true);
+        }
+        
         nombre.setText(contacto.getNombre());
         ivPerfil.setImage(new Image(contacto.getPerfil()));
+        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        
         
         if(c.getClass().equals(Persona.class)){
             tipoContacto.setText("Persona");

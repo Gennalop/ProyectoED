@@ -3,9 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -34,7 +32,7 @@
             <ImageView fx:id="imageView" fitHeight="87.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </HBox>
-      <TextField fx:id="nombre" prefWidth="100.0" maxWidth="100.0" minWidth="50.0">
+      <TextField fx:id="nombre" maxWidth="100.0" minWidth="50.0" prefWidth="100.0">
          <VBox.margin>
             <Insets bottom="10.0" />
          </VBox.margin>
@@ -52,17 +50,45 @@
                   <Insets left="20.0" top="15.0" />
                </padding>
                <children>
-                  <HBox prefHeight="1.0" prefWidth="280.0" translateY="12.0">
+                  <VBox fx:id="cont1" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
                      <children>
-                        <SplitMenuButton mnemonicParsing="false" prefHeight="0.0" prefWidth="84.0" text="Etiqueta">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </SplitMenuButton>
-                        <Button mnemonicParsing="false" onMouseClicked="#otroTelf" text="+" />
+                        <Label fx:id="lbl1" text="Label">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Corbel Bold" size="12.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </HBox>
+                     <padding>
+                        <Insets bottom="7.0" left="10.0" top="7.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="cont2" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
+                     <children>
+                        <Label fx:id="lbl2" text="Label">
+                           <font>
+                              <Font name="Corbel Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="7.0" left="10.0" top="7.0" />
+                     </padding>
+                  </VBox>
+                  <VBox fx:id="ubicacion" prefHeight="200.0" prefWidth="100.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
+                     <padding>
+                        <Insets bottom="7.0" left="10.0" top="7.0" />
+                     </padding>
+                     <children>
+                        <Label text="Ubicacion">
+                           <font>
+                              <Font name="Corbel Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                   <VBox fx:id="telefonos" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
                      <children>
                         <Label text="Teléfono">
@@ -93,17 +119,6 @@
                         <Insets bottom="7.0" left="10.0" top="7.0" />
                      </padding>
                   </VBox>
-                  <HBox prefHeight="1.0" prefWidth="280.0" translateY="12.0">
-                     <children>
-                        <SplitMenuButton mnemonicParsing="false" prefHeight="0.0" prefWidth="84.0" text="Etiqueta">
-                           <items>
-                              <MenuItem mnemonicParsing="false" text="Action 1" />
-                              <MenuItem mnemonicParsing="false" text="Action 2" />
-                           </items>
-                        </SplitMenuButton>
-                        <Button mnemonicParsing="false" onMouseClicked="#otroCorr" text="+" />
-                     </children>
-                  </HBox>
                   <VBox fx:id="correos" prefHeight="30.0" prefWidth="232.0" spacing="5.0" style="-fx-background-color: #e1e1e1;">
                      <children>
                         <Label text="Correos">

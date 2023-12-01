@@ -119,8 +119,8 @@ public class EditarContactoController implements Initializable {
         // Mover a otro método showData
         System.out.println(""+currentPos);
         nombre.setText(contacto.getNombre());
-        imageView.setImage(new Image(contacto.getPerfil()));
-        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        //imageView.setImage(new Image(contacto.getPerfil()));
+        //imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
 
         // Agregar nuevos elementos
         if (contacto instanceof Persona){
@@ -281,9 +281,19 @@ public class EditarContactoController implements Initializable {
         if (contacto instanceof Persona){
             TextField apell =  (TextField) cont1.getChildren().get(1);
             TextField apod =  (TextField) cont2.getChildren().get(1);
-            Contacto cnt = new Persona(apod.getText(), apell.getText(), )
+            Contacto cnt = new Persona(apod.getText(), apell.getText(), nombre.getText(), contacto.getPerfil(), fts, ubcs, crrs, tlfs, contacto.getContactos());
+            contactosList.addFirst(cnt);
         }
-
+        if (contacto instanceof Empresa){
+            TextField dept =  (TextField) cont1.getChildren().get(1);
+            TextField sitioW =  (TextField) cont2.getChildren().get(1);
+            Contacto cnt = new Empresa(dept.getText(), sitioW.getText(), nombre.getText(), contacto.getPerfil(), fts, ubcs, crrs, tlfs, contacto.getContactos());
+            contactosList.addFirst(cnt);
+        }
+        for (Contacto c: contactosList){
+            Utilitaria.saveFile(c, "Contacto.XML", true); 
+        }
+        
     }
     
     private AtributoComplejo getComplexAttribute(HBox atributo, String nombre){

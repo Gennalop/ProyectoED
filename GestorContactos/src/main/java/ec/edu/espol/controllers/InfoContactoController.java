@@ -165,7 +165,7 @@ public class InfoContactoController implements Initializable {
         //Mover a otro metodo showData
         System.out.println(""+currentPos);
         nombre.setText(contacto.getNombre());
-        //imageView.setImage(new Image(contacto.getPerfil()));
+        ivPerfil.setImage(new Image(contacto.getPerfil()));
         if(contacto.getFotos().size()!=0)
             imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
         
@@ -198,7 +198,9 @@ public class InfoContactoController implements Initializable {
             FXMLLoader loader;
             loader = App.loadFXML("editarContacto");
             Scene sc = new Scene(loader.load());
-            App.setScene(sc);
+            EditarContactoController edc = loader.getController();
+            edc.setContacto(this.contacto);            
+            App.setScene(sc);  
         } catch (IOException e) {
             e.printStackTrace();
         }

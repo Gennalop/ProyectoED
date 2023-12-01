@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.espol.controllers;
 
-/**
- *
- * @author Usuario
- */
 import ec.edu.espol.gestorcontactos.App;
 import ec.edu.espol.model.AtributoComplejo;
 import ec.edu.espol.model.Contacto;
@@ -73,7 +64,7 @@ public class EditarContactoController implements Initializable {
     @FXML
     private VBox ubicacion;    
     
-    private ArrayList<Contacto> contactosList;
+    private List<Contacto> contactosList;
     private Contacto contacto;
     private int currentPos;
     private int cont=0;
@@ -281,8 +272,12 @@ public class EditarContactoController implements Initializable {
         if (contacto instanceof Persona){
             TextField apell =  (TextField) cont1.getChildren().get(1);
             TextField apod =  (TextField) cont2.getChildren().get(1);
+<<<<<<< HEAD
             Contacto cnt = new Persona(apod.getText(), apell.getText(), nombre.getText(), contacto.getPerfil(), fts, ubcs, crrs, tlfs, contacto.getContactos());
             contactosList.addFirst(cnt);
+=======
+            //Contacto cnt = new Persona(apod.getText(), apell.getText(), )
+>>>>>>> 8bea77d8d093ed3b4dc6d8a60db1cc27cf7f2863
         }
         if (contacto instanceof Empresa){
             TextField dept =  (TextField) cont1.getChildren().get(1);

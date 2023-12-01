@@ -7,8 +7,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+<<<<<<< HEAD
 import java.util.Comparator;
+=======
+import javafx.scene.control.Alert;
+>>>>>>> 8bea77d8d093ed3b4dc6d8a60db1cc27cf7f2863
 import util.ArrayList;
+import util.LinkedList;
+import util.List;
 
 public class Utilitaria {
     
@@ -34,24 +40,11 @@ public class Utilitaria {
             writer.close();
         } catch (IOException ex) {
         }
-        /*
-        try(BufferedWriter bw = new BufferedWriter(new FileWriter("Copy"+nomfile,true))){
-            bw.write(this.grado + "|");
-            int cont = 1;
-            for(int c : this.coeficientes){
-                if(cont == this.coeficientes.length)
-                    bw.write(c + "\n");
-                else
-                    bw.write(c + ",");
-                cont++;
-            }
-        }catch(IOException ie){  
-        }*/
     }
     
     //Revisar para usar generics y return List
-    public static ArrayList<Contacto> readFileContacto(String nomfile){
-        ArrayList<Contacto> retorno = new ArrayList<>();
+    public static List<Contacto> readFileContacto(String nomfile){
+        List<Contacto> retorno = new LinkedList<>();
         Contacto e;
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomfile))){
             while(true){
@@ -64,19 +57,14 @@ public class Utilitaria {
         return retorno;
     }
     
-    public static <E> ArrayList<E> readFile(String nomfile){
-        ArrayList<E> retorno = new ArrayList<>();
-        E e;
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nomfile))){
-            while(true){
-                e = (E) in.readObject();
-                System.out.println("Leyendo: "+e.toString());
-                retorno.addLast(e);
-            }
-        }catch(Exception ex){
+    public static List<Contacto> clone(List<Contacto> original) {
+        List<Contacto> contactos = new ArrayList<>();
+        for (Contacto c:original) {
+            contactos.addLast( c);
         }
-        return retorno;
+        return contactos;
     }
+
     
     public static void removeContact(Contacto contacto, String nomfile){
         
@@ -111,5 +99,12 @@ public class Utilitaria {
         
     }
     
+    public static void mostrarAlerta(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Alerta");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
     
 }

@@ -153,6 +153,8 @@ public class NuevoContactoController implements Initializable {
         TextField tfContenido = (TextField) atributo.getChildren().get(1);
 
         String descripcion = cbxDescripcion.getSelectionModel().getSelectedItem();
+        if(descripcion == null)
+            descripcion = cbxDescripcion.getPromptText();
         String contenido = tfContenido.getText();
 
         if (!contenido.equals("")) {
@@ -197,8 +199,18 @@ public class NuevoContactoController implements Initializable {
         List<AtributoComplejo> telf = getComplexAttributes(telefonos, "Telefono");
         
         if (nomb.equals("") || telf.isEmpty()) {
-            mostrarAlerta("Nombre y Telefono son obligatorios");
+            Utilitaria.mostrarAlerta("Nombre y Telefono son obligatorios");
         } else {
+            
+            for (AtributoComplejo ac : telf) {
+                try {
+                    Integer.parseInt(ac.getContenido()+"");
+                } catch (NumberFormatException nfe) {
+                    Utilitaria.mostrarAlerta("Hay un campo que debe ser llenado con numeros");
+                    return;
+                }
+            }
+            
             List<AtributoComplejo> corr = getComplexAttributes(correos, "Correo");
             List<AtributoComplejo> ub = getComplexAttributes(ubicacion, "Ubicacion");
 
@@ -219,14 +231,6 @@ public class NuevoContactoController implements Initializable {
             cancelar(event);
         }
         
-    }
-
-    private void mostrarAlerta(String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Alerta");
-        alert.setHeaderText(null);
-        alert.setContentText(mensaje);
-        alert.showAndWait();
     }
     
     public void setContacts(List<Contacto> contactos){
@@ -286,7 +290,7 @@ public class NuevoContactoController implements Initializable {
             }
         }
         panelContactosAsociados.getChildren().add(selectedItem);
-        //cbxContactosAsociados.getSelectionModel().select(0);
+        //  cbxContactosAsociados.getSelectionModel().select(0);
         
     }
     

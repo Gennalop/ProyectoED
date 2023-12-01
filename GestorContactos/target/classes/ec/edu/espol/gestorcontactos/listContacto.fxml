@@ -31,7 +31,7 @@
                   <ImageView fitHeight="38.0" fitWidth="66.0" layoutX="-1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
-            <ImageView fx:id="ivFiltro" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#filtrar" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ivFiltro" fitHeight="20.0" fitWidth="20.0" onMouseClicked="#mostrarFiltrar" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
@@ -50,7 +50,7 @@
       </HBox>
       <TabPane prefHeight="452.0" prefWidth="280.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Contactos">
+          <Tab text="MisContactos">
             <content>
                   <ScrollPane prefHeight="420.0" prefWidth="280.0">
                      <padding>
@@ -62,30 +62,6 @@
                   </ScrollPane>
             </content>
           </Tab>
-            <Tab text="Favoritos">
-               <content>
-                  <ScrollPane prefHeight="420.0" prefWidth="280.0">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                     <content>
-                        <VBox fx:id="panelFavoritos" prefHeight="404.0" prefWidth="258.0" />
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab text="Grupos">
-               <content>
-                  <ScrollPane prefHeight="420.0" prefWidth="280.0">
-                     <padding>
-                        <Insets left="10.0" top="10.0" />
-                     </padding>
-                     <content>
-                        <VBox fx:id="panelGrupos" prefHeight="404.0" prefWidth="258.0" />
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
         </tabs>
       </TabPane>
    </children>

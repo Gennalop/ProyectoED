@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\AtributoComplejo.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\Contacto.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\myObjectOutputStream.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\Atributo.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\Persona.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\Empresa.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\util\List.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\Utilitaria.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\controllers\InfoContactoController.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\controllers\ListContactoController.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\controllers\NuevoContactoController.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\gestorcontactos\App.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\util\Node.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\controllers\EditarContactoController.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\util\LinkedList.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\util\ArrayList.java
+C:\Users\Usuario\Documents\Proyectos_git\ProyectoFINAL\ProyectoED\GestorContactos\src\main\java\module-info.java
+=======
 C:\Users\Usuario\Documents\Estructura de datos\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\controllers\InfoContactoController.java
 C:\Users\Usuario\Documents\Estructura de datos\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\controllers\ListContactoController.java
 C:\Users\Usuario\Documents\Estructura de datos\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\AtributoComplejo.java
@@ -16,3 +35,4 @@ C:\Users\Usuario\Documents\Estructura de datos\ProyectoED\GestorContactos\src\ma
 C:\Users\Usuario\Documents\Estructura de datos\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\gestorcontactos\App.java
 C:\Users\Usuario\Documents\Estructura de datos\ProyectoED\GestorContactos\src\main\java\ec\edu\espol\model\Utilitaria.java
 C:\Users\Usuario\Documents\Estructura de datos\ProyectoED\GestorContactos\src\main\java\util\Node.java
+>>>>>>> 2671b7c2d4b2d51e8dcd422a731eae034e4e30ab

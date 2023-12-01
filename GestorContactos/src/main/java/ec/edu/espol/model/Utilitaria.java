@@ -87,7 +87,9 @@ public class Utilitaria {
         
         if(contactos.size() == 0)
             (new File(nomfile)).delete();  
-        if(!(contactos.size() == 1)){
+        if(contactos.size() == 1){
+            (new File(nomfile)).delete(); 
+        } else{
             for(int i = 0; i<contactos.size(); i++){
                 if(i == 0){
                     saveFile(contactos.get(i), nomfile, true);
@@ -95,9 +97,7 @@ public class Utilitaria {
                     saveFile(contactos.get(i), nomfile, false);
                 }                             
             }
-        }else {
-         (new File(nomfile)).delete();
-        }
+        }    
         
     }
     

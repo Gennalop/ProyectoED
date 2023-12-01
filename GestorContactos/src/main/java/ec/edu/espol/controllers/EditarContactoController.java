@@ -141,7 +141,7 @@ public class EditarContactoController implements Initializable {
             HBox h = new HBox();
             Label lb = new Label();
             lb.setText(s.getContenido().toString());
-
+            
             ComboBox<String> cbx = new ComboBox();
             cbx.setPromptText("Personal");
             cbx.getItems().addAll("Personal", "Domicilio", "Trabajo", "Otro");
@@ -155,7 +155,6 @@ public class EditarContactoController implements Initializable {
                     HBox hbox = new HBox();
                     hbox.getChildren().addAll(cbx2, new TextField());
                     telefonos.getChildren().addAll(hbox);
-                    listaTelefonos.addLast(hbox);
                 }
                 if(vbox.equals(correos)){
                     ComboBox cbx2 = new ComboBox();
@@ -164,7 +163,6 @@ public class EditarContactoController implements Initializable {
                     HBox hbox = new HBox();
                     hbox.getChildren().addAll(cbx2, new TextField());
                     correos.getChildren().addAll(hbox);
-                    listaCorreos.addLast(hbox);
                 }
                 if(vbox.equals(ubicacion)){
                     ComboBox cbx2 = new ComboBox();
@@ -175,7 +173,8 @@ public class EditarContactoController implements Initializable {
                     ubicacion.getChildren().addAll(hbox);
                     listaUbicacion.addLast(hbox);
                 }                
-            });
+            });            
+
             // Crear TextField y botón "X"
             TextField textField = new TextField(lb.getText());
             Button x = new Button("X");
@@ -198,13 +197,6 @@ public class EditarContactoController implements Initializable {
 
             // Agregar HBox al VBox
             vbox.getChildren().add(h);
-            if(vbox.equals(telefonos))
-                listaTelefonos.addLast(h);
-            if(vbox.equals(correos));
-                listaCorreos.addLast(h);
-            if(vbox.equals(listaUbicacion))
-                listaUbicacion.addLast(h);
-            
         }
     }
 
@@ -238,6 +230,8 @@ public class EditarContactoController implements Initializable {
             FXMLLoader loader;
             loader = App.loadFXML("infoContacto");
             Scene sc = new Scene(loader.load());
+            InfoContactoController edc = loader.getController();
+            edc.setContacto(this.contacto);             
             App.setScene(sc);
         } catch (IOException e) {
             e.printStackTrace();

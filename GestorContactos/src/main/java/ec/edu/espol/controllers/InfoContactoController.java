@@ -50,6 +50,8 @@ public class InfoContactoController implements Initializable {
     
     private Contacto contacto;
     private List<Contacto> contactsDisplayed;
+    private List<Contacto> allContacts;
+    
     
     private int currentPos;
     private int cont=0;
@@ -65,34 +67,15 @@ public class InfoContactoController implements Initializable {
         ivEliminar.setFitWidth(20); ivEditar.setFitHeight(20);
         ivEditar.setImage(new Image("img/iconoEditar.png"));
         ivEditar.setFitWidth(20); ivEditar.setFitHeight(20);
-        
-        //allContacts = Utilitaria.readFileContacto("Contacto.XML");
+        ant.setVisible(true);
+        sgte.setVisible(true);
+        contactsDisplayed = Utilitaria.readFileContacto("Contacto.XML");
+        for(Contacto c:contactsDisplayed)
+            System.out.println(c + "............");
         
          
     }
     
-    @FXML
-    private void anterior(MouseEvent event) {
-        try {
-            FXMLLoader loader;
-            loader = App.loadFXML("infoContacto");
-            Scene sc = new Scene(loader.load());
-            InfoContactoController icc = loader.getController();
-            currentPos--;
-            Contacto c; 
-            if(currentPos == -1){
-                c=contactsDisplayed.get(contactsDisplayed.size()-1);
-                icc.setContacto(c);
-            }else{
-                c=contactsDisplayed.get(currentPos);
-                icc.setContacto(c);
-                    
-                    }
-            App.setScene(sc);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }    
-    }
     
     @FXML
     private void anteriorFoto(MouseEvent event) {
@@ -102,24 +85,54 @@ public class InfoContactoController implements Initializable {
         ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
     }
 
-    @FXML
-    private void siguiente(MouseEvent event) {
-        try {
-            FXMLLoader loader;
-            loader = App.loadFXML("infoContacto");
-            Scene sc = new Scene(loader.load());
-            InfoContactoController icc = loader.getController();
-            currentPos++;
-            if(currentPos == (contactsDisplayed.size())){
-                icc.setContacto(contactsDisplayed.get(0));
-            } else {
-                icc.setContacto(contactsDisplayed.get(currentPos));
-            }    
-            App.setScene(sc);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }    
+@FXML
+private void siguiente(MouseEvent event) {
+    try {
+        FXMLLoader loader = App.loadFXML("infoContacto");
+        Scene sc = new Scene(loader.load());
+        InfoContactoController icc = loader.getController();
+
+        if (!contactsDisplayed.isEmpty()) {
+            currentPos = (currentPos + 1) % contactsDisplayed.size();
+            System.out.println("Siguiente - Nuevo índice: " + currentPos);
+            Contacto c = contactsDisplayed.get(currentPos);
+            System.out.println("Siguiente - Mostrando contacto: " + c);
+            icc.setContacto(c);
+        } else {
+            System.out.println("Siguiente - Lista vacía");
+        }
+
+        App.setScene(sc);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
+
+@FXML
+private void anterior(MouseEvent event) {
+    try {
+        FXMLLoader loader = App.loadFXML("infoContacto");
+        Scene sc = new Scene(loader.load());
+        InfoContactoController icc = loader.getController();
+
+        if (!contactsDisplayed.isEmpty()) {
+            currentPos = (currentPos - 1 + contactsDisplayed.size()) % contactsDisplayed.size();
+            System.out.println("Anterior - Nuevo índice: " + currentPos);
+            Contacto c = contactsDisplayed.get(currentPos);
+            System.out.println("Anterior - Mostrando contacto: " + c);
+            icc.setContacto(c);
+        } else {
+            System.out.println("Anterior - Lista vacía");
+        }
+
+        App.setScene(sc);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+
+
     
     @FXML
     private void siguienteFoto(MouseEvent event) {

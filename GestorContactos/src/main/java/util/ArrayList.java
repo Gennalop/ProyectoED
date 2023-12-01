@@ -172,5 +172,14 @@ public class ArrayList<E> implements List<E>, Serializable{
         };
         return it;
     }
+    
+    @Override
+    public int getIndexOf(E element, Comparator<E> comparator) {
+        for(int i = 0; i < effectiveSize; i++){
+            if(comparator.compare(elements[i], element) == 0)
+                return i;
+        }
+        return -1;
+    }    
 
 }

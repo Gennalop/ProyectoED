@@ -220,4 +220,15 @@ public class LinkedList<E> implements List<E>, Serializable{
         };
         return it;
     }
+    
+    @Override
+    public int getIndexOf(E element, Comparator<E> comparator) {
+        int indice = 0;
+        for (E e: this){
+            if (comparator.compare(e, element) == 0)
+                return indice;
+            indice++;
+        }
+        return -1;
+    }
 }

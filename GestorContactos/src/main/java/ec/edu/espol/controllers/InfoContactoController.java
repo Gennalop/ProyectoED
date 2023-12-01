@@ -8,6 +8,7 @@ import ec.edu.espol.model.Persona;
 import ec.edu.espol.model.Utilitaria;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,8 +51,6 @@ public class InfoContactoController implements Initializable {
     
     private Contacto contacto;
     private List<Contacto> contactsDisplayed;
-    private List<Contacto> allContacts;
-    
     
     private int currentPos;
     private int cont=0;
@@ -69,22 +68,11 @@ public class InfoContactoController implements Initializable {
         ivEditar.setFitWidth(20); ivEditar.setFitHeight(20);
         ant.setVisible(true);
         sgte.setVisible(true);
-        contactsDisplayed = Utilitaria.readFileContacto("Contacto.XML");
-        for(Contacto c:contactsDisplayed)
-            System.out.println(c + "............");
         
+        contactsDisplayed = Utilitaria.readFileContacto("Contacto.XML");        
          
     }
     
-    
-    @FXML
-    private void anteriorFoto(MouseEvent event) {
-        if(cont == 0)
-            cont = contacto.getFotos().size();
-        cont--;
-        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
-    }
-
 @FXML
 private void siguiente(MouseEvent event) {
     try {
@@ -131,8 +119,14 @@ private void anterior(MouseEvent event) {
     }
 }
 
-
-
+    
+    @FXML
+    private void anteriorFoto(MouseEvent event) {
+        if(cont == 0)
+            cont = contacto.getFotos().size();
+        cont--;
+        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
+    }
     
     @FXML
     private void siguienteFoto(MouseEvent event) {
@@ -164,6 +158,14 @@ private void anterior(MouseEvent event) {
     public void setContacto(Contacto c){
         
         contacto = c;
+                Comparator<Contacto> cmp = new Comparator<>(){
+           @Override
+           public int compare(Contacto o1, Contacto o2) {
+               return o1.getNombre().compareTo(o2.getNombre());
+           }
+ 
+        };
+        currentPos = contactsDisplayed.getIndexOf(contacto, cmp);
         
         nombre.setText(contacto.getNombre());
         ivPerfil.setImage(new Image(contacto.getPerfil()));

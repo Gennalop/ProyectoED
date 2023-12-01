@@ -36,4 +36,5 @@ public interface List<E> extends Iterable<E>, Serializable{
     
     public E removeElement(Comparator<E> cmp, E element);  
     
+    public int getIndexOf(E element, Comparator<E> comparator);
 }

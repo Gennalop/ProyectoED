@@ -7,11 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-<<<<<<< HEAD
 import java.util.Comparator;
-=======
 import javafx.scene.control.Alert;
->>>>>>> 8bea77d8d093ed3b4dc6d8a60db1cc27cf7f2863
 import util.ArrayList;
 import util.LinkedList;
 import util.List;
@@ -59,6 +56,7 @@ public class Utilitaria {
     
     public static List<Contacto> clone(List<Contacto> original) {
         List<Contacto> contactos = new ArrayList<>();
+        if (original.isEmpty()) return null;
         for (Contacto c:original) {
             contactos.addLast( c);
         }
@@ -68,7 +66,8 @@ public class Utilitaria {
     
     public static void removeContact(Contacto contacto, String nomfile){
         
-        ArrayList<Contacto> contactos = readFileContacto(nomfile);
+        List<Contacto> contactos = readFileContacto(nomfile);
+
         Comparator<Contacto> cmp = new Comparator<>(){
             @Override
             public int compare(Contacto o1, Contacto o2) {
@@ -86,15 +85,18 @@ public class Utilitaria {
             }                  
         }*/
         
-        if(contactos.size()==0)
+        if(contactos.size() == 0)
             (new File(nomfile)).delete();  
-        
-        for(int i = 0; i<contactos.size(); i++){
-            if(i == 0){
-                saveFile(contactos.get(i), nomfile, true);
-            } else {
-                saveFile(contactos.get(i), nomfile, false);
-            }                             
+        if(!(contactos.size() == 1)){
+            for(int i = 0; i<contactos.size(); i++){
+                if(i == 0){
+                    saveFile(contactos.get(i), nomfile, true);
+                } else {
+                    saveFile(contactos.get(i), nomfile, false);
+                }                             
+            }
+        }else {
+         (new File(nomfile)).delete();
         }
         
     }

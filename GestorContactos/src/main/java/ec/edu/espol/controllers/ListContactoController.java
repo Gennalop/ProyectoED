@@ -83,10 +83,11 @@ public class ListContactoController implements Initializable {
     private void showContacts(List<Contacto> contactos, VBox panel) {
         
         panel.getChildren().clear();
-
-        for (Contacto c : contactos) {
-            Pane contactoView = setContactView(c);
-            panel.getChildren().addAll(contactoView);
+        if (!allContacts.isEmpty()){
+            for (Contacto c : contactos) {
+                Pane contactoView = setContactView(c);
+                panel.getChildren().addAll(contactoView);
+            }
         }
         
     }

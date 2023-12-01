@@ -171,6 +171,7 @@ public class LinkedList<E> implements List<E>, Serializable{
     //este puede ser usado como for each. Es un iterador normal 
     @Override
     public Iterator<E> iterator(){
+        if (this.isEmpty()) return null;
         Iterator<E> it = new Iterator<>(){
             Node<E> cursor = last.getNext();
             boolean esPrimero = true;

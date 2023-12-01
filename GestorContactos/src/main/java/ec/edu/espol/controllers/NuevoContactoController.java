@@ -236,38 +236,39 @@ public class NuevoContactoController implements Initializable {
     public void setContacts(List<Contacto> contactos){
         
         AllContacts = contactos;
-        
-        for (Contacto c : contactos) {
+        if(!contactos.isEmpty()){
+            for (Contacto c : contactos) {
             
-            HBox hbox = new HBox();
-            hbox.setId(c.getIdContacto()+"");
-            hbox.setAlignment(Pos.CENTER_LEFT);
-            hbox.setSpacing(10);
-            hbox.setMaxHeight(25); hbox.setMaxWidth(222);
+                HBox hbox = new HBox();
+                hbox.setId(c.getIdContacto()+"");
+                hbox.setAlignment(Pos.CENTER_LEFT);
+                hbox.setSpacing(10);
+                hbox.setMaxHeight(25); hbox.setMaxWidth(222);
 
-            ImageView perfil = new ImageView(new Image(c.getPerfil()));
-            perfil.setFitWidth(20); perfil.setFitHeight(20);
+                ImageView perfil = new ImageView(new Image(c.getPerfil()));
+                perfil.setFitWidth(20); perfil.setFitHeight(20);
 
-            Label nombre = new Label(c.getNombre());
-            nombre.setTextFill(Color.BLACK);;
-            nombre.setMaxWidth(150); nombre.setMinWidth(150);
+                Label nombre = new Label(c.getNombre());
+                nombre.setTextFill(Color.BLACK);;
+                nombre.setMaxWidth(150); nombre.setMinWidth(150);
             
-            Button eliminar = new Button("X");
-            eliminar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t) -> {
-                //contactosAsociados.remove(c);
-                //cbxContactosAsociados.getSelectionModel().select(0);
-                //cbxContactosAsociados.getItems().remove(hbox);
-                cbxContactosAsociados.getItems().add(hbox);
-                //cbxContactosAsociados.getSelectionModel().select(-1);
+                Button eliminar = new Button("X");
+                eliminar.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent t) -> {
+                    //contactosAsociados.remove(c);
+                    //cbxContactosAsociados.getSelectionModel().select(0);
+                    //cbxContactosAsociados.getItems().remove(hbox);
+                    cbxContactosAsociados.getItems().add(hbox);
+                    //cbxContactosAsociados.getSelectionModel().select(-1);
+                    eliminar.setDisable(true);
+                    eliminar.setVisible(false);
+                    panelContactosAsociados.getChildren().remove(hbox);
+                });
                 eliminar.setDisable(true);
                 eliminar.setVisible(false);
-                panelContactosAsociados.getChildren().remove(hbox);
-            });
-            eliminar.setDisable(true);
-            eliminar.setVisible(false);
 
-            hbox.getChildren().addAll(perfil, nombre, eliminar);
-            cbxContactosAsociados.getItems().add(hbox);
+                hbox.getChildren().addAll(perfil, nombre, eliminar);
+                cbxContactosAsociados.getItems().add(hbox);
+            }
         }
         
     }

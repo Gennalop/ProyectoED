@@ -128,19 +128,19 @@ public class EditarContactoController implements Initializable {
             cont2.getChildren().add(new TextField(ctn.getSitioWeb()));
             cont1.getChildren().add(new TextField(ctn.getDepartamento()));       
         } 
-       // agregarElementos(telefonos, contacto.getTelefonos());
-        //agregarElementos(correos, contacto.getCorreos());
-        //agregarElementosContactos(contactos, contacto.getContactos());
+        agregarElementos(telefonos, contacto.getTelefonos());
+        agregarElementos(correos, contacto.getCorreos());
+        agregarElementosContactos(contactos, contacto.getContactos());
     }
 
-    private void agregarElementos(VBox vbox, List<String> datos) {
+    private void agregarElementos(VBox vbox, List<AtributoComplejo> datos) {
 
         for (int i = datos.size() - 1; i >= 0; i--) {
-            String s = datos.get(i);
+            AtributoComplejo s = datos.get(i);
 
             HBox h = new HBox();
             Label lb = new Label();
-            lb.setText(s);
+            lb.setText(s.getContenido().toString());
 
             ComboBox<String> cbx = new ComboBox();
             cbx.setPromptText("Personal");
@@ -246,17 +246,7 @@ public class EditarContactoController implements Initializable {
     
     @FXML
     private void guardar(MouseEvent event) {
-        File archivoContactos = new File("Contacto.XML");
-        if (archivoContactos.exists()) {
-            // Intentar borrar el archivo
-            if (archivoContactos.delete()) {
-                System.out.println("El archivo ha sido borrado exitosamente.");
-            } else {
-                System.out.println("No se pudo borrar el archivo.");
-            }
-        } else {
-            System.out.println("El archivo no existe.");
-        }
+        Utilitaria.removeContact(contacto, "Contacto.XML");
         Comparator<Contacto> cmp = new Comparator<>(){
             @Override
             public int compare(Contacto o1, Contacto o2) {
@@ -272,22 +262,24 @@ public class EditarContactoController implements Initializable {
         if (contacto instanceof Persona){
             TextField apell =  (TextField) cont1.getChildren().get(1);
             TextField apod =  (TextField) cont2.getChildren().get(1);
-<<<<<<< HEAD
             Contacto cnt = new Persona(apod.getText(), apell.getText(), nombre.getText(), contacto.getPerfil(), fts, ubcs, crrs, tlfs, contacto.getContactos());
-            contactosList.addFirst(cnt);
-=======
+            Utilitaria.saveFile(cnt, "Contacto.XML", true);
             //Contacto cnt = new Persona(apod.getText(), apell.getText(), )
->>>>>>> 8bea77d8d093ed3b4dc6d8a60db1cc27cf7f2863
         }
         if (contacto instanceof Empresa){
             TextField dept =  (TextField) cont1.getChildren().get(1);
             TextField sitioW =  (TextField) cont2.getChildren().get(1);
             Contacto cnt = new Empresa(dept.getText(), sitioW.getText(), nombre.getText(), contacto.getPerfil(), fts, ubcs, crrs, tlfs, contacto.getContactos());
-            contactosList.addFirst(cnt);
+            Utilitaria.saveFile(cnt, "Contacto.XML", true);
         }
-        for (Contacto c: contactosList){
-            Utilitaria.saveFile(c, "Contacto.XML", true); 
-        }
+        try {
+            FXMLLoader loader;
+            loader = App.loadFXML("listContacto");
+            Scene sc = new Scene(loader.load());
+            App.setScene(sc);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }        
         
     }
     

@@ -171,12 +171,11 @@ public class InfoContactoController implements Initializable {
             panelInformacion.getChildren().add(0, sitioWeb);
         }
         
-<<<<<<< HEAD
+
         //Mover a otro metodo showData
         System.out.println(""+currentPos);
         nombre.setText(contacto.getNombre());
         ivPerfil.setImage(new Image(contacto.getPerfil()));
-=======
         VBox telefonos = showComplexAtributte("Telefono", c.getTelefonos());
         VBox correos = showComplexAtributte("Correo", c.getCorreos());
         VBox ubicacion = showComplexAtributte("Ubicacion", c.getUbicacion());
@@ -187,7 +186,6 @@ public class InfoContactoController implements Initializable {
         
         if(!c.getTelefonos().isEmpty())
             panelInformacion.getChildren().add(showAtributte("Telefono", ));
->>>>>>> 8bea77d8d093ed3b4dc6d8a60db1cc27cf7f2863
         if(contacto.getFotos().size()!=0)
             ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
         /*

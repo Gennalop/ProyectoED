@@ -1,7 +1,10 @@
 package ec.edu.espol.controllers;
 
 import ec.edu.espol.gestorcontactos.App;
+import ec.edu.espol.model.AtributoComplejo;
 import ec.edu.espol.model.Contacto;
+import ec.edu.espol.model.Empresa;
+import ec.edu.espol.model.Persona;
 import ec.edu.espol.model.Utilitaria;
 import java.io.IOException;
 import java.net.URL;
@@ -9,14 +12,17 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import util.ArrayList;
+import util.List;
 
 public class InfoContactoController implements Initializable {
 
@@ -24,56 +30,45 @@ public class InfoContactoController implements Initializable {
     private Label tipoContacto;
     @FXML
     private Label nombre;
+    
     @FXML
     private Button ant;
     @FXML
     private Button sgte;
-    @FXML
     private VBox contactos;
-    @FXML
-    private VBox fotos;
     @FXML
     private Button antFoto;
     @FXML
-    private ImageView imvFotos;
-    @FXML
     private Button sgteFoto;
-    
-    private ArrayList<Contacto> contactosList;
-    private Contacto contacto;
-    private int currentPos;
-    private int cont=0;
     @FXML
     private ImageView ivEliminar;
     @FXML
     private ImageView ivEditar;
     @FXML
     private ImageView ivPerfil;
+    private ImageView ivFotos;
+    
+    private Contacto contacto;
+    private List<Contacto> contactsDisplayed;
+    
+    private int currentPos;
+    private int cont=0;
     @FXML
-    private VBox telefonos1;
+    private VBox panelInformacion;
     @FXML
-    private Label lbPrimerAtributo;
-    @FXML
-    private VBox telefonos11;
-    @FXML
-    private Label lbSegundoAtributo;
-    @FXML
-    private VBox vbxTelefonos;
-    @FXML
-    private VBox vbxCorreos;
+    private ImageView imvFotos;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ivEditar.setImage(new Image("img/iconoEditar.png"));
-        ivEditar.setFitWidth(20); ivEditar.setFitHeight(20);
         ivEliminar.setImage(new Image("img/iconoEliminar.png"));
         ivEliminar.setFitWidth(20); ivEditar.setFitHeight(20);
-        contactosList = Utilitaria.readFileContacto("Contacto.XML");
-        if(contactosList.size()>1){
-            ant.setVisible(true);
-            sgte.setVisible(true);
-        }        
+        ivEditar.setImage(new Image("img/iconoEditar.png"));
+        ivEditar.setFitWidth(20); ivEditar.setFitHeight(20);
+        
+        //allContacts = Utilitaria.readFileContacto("Contacto.XML");
+        
+         
     }
     
     @FXML
@@ -86,10 +81,10 @@ public class InfoContactoController implements Initializable {
             currentPos--;
             Contacto c; 
             if(currentPos == -1){
-                c=contactosList.get(contactosList.size()-1);
+                c=contactsDisplayed.get(contactsDisplayed.size()-1);
                 icc.setContacto(c);
             }else{
-                c=contactosList.get(currentPos);
+                c=contactsDisplayed.get(currentPos);
                 icc.setContacto(c);
                     
                     }
@@ -104,7 +99,7 @@ public class InfoContactoController implements Initializable {
         if(cont == 0)
             cont = contacto.getFotos().size();
         cont--;
-        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
     }
 
     @FXML
@@ -115,10 +110,10 @@ public class InfoContactoController implements Initializable {
             Scene sc = new Scene(loader.load());
             InfoContactoController icc = loader.getController();
             currentPos++;
-            if(currentPos == (contactosList.size())){
-                icc.setContacto(contactosList.get(0));
+            if(currentPos == (contactsDisplayed.size())){
+                icc.setContacto(contactsDisplayed.get(0));
             } else {
-                icc.setContacto(contactosList.get(currentPos));
+                icc.setContacto(contactsDisplayed.get(currentPos));
             }    
             App.setScene(sc);
         } catch (IOException e) {
@@ -131,7 +126,7 @@ public class InfoContactoController implements Initializable {
         if(cont == contacto.getFotos().size() - 1)
             cont = -1;
         cont++;
-        imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
     }
 
     @FXML
@@ -145,29 +140,61 @@ public class InfoContactoController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private void eliminar(MouseEvent event) {
+    
+    public void setContactsDisplayed(List<Contacto> contacts){
+        contactsDisplayed = contacts;
+        if(contactsDisplayed.size()>1){
+            ant.setVisible(true); sgte.setVisible(true);
+        }
     }
 
     public void setContacto(Contacto c){
+        
         contacto = c;
-        if (contacto.getFotos().size()>1){
-            antFoto.setVisible(true);
-            sgteFoto.setVisible(true);
-        }
-        //Implementar un metodo para hacer esta busqueda
-        for(int i = 0; i < contactosList.size(); i++){
-            if(contactosList.get(i).getNombre().equals(contacto.getNombre()))
-                currentPos = i;
+        
+        nombre.setText(contacto.getNombre());
+        ivPerfil.setImage(new Image(contacto.getPerfil()));
+        
+        if(c.getClass().equals(Persona.class)){
+            tipoContacto.setText("Persona");
+            Persona p = (Persona)c;
+            HBox apellido = showAtributte("Apellido", p.getApellido());
+            HBox apodo = showAtributte("Apodo", p.getApodo());
+            panelInformacion.getChildren().add(0, apodo);
+            panelInformacion.getChildren().add(0, apellido);
+        } else {
+            tipoContacto.setText("Empresa");
+            Empresa e = (Empresa)c;
+            HBox departamento = showAtributte("Departamento", e.getDepartamento());
+            HBox sitioWeb = showAtributte("Sitio Web", e.getSitioWeb());
+            panelInformacion.getChildren().add(0, departamento);
+            panelInformacion.getChildren().add(0, sitioWeb);
         }
         
-        //Mover a otro metodo showData
-        System.out.println(""+currentPos);
-        nombre.setText(contacto.getNombre());
-        //imageView.setImage(new Image(contacto.getPerfil()));
+        VBox telefonos = showComplexAtributte("Telefono", c.getTelefonos());
+        VBox correos = showComplexAtributte("Correo", c.getCorreos());
+        VBox ubicacion = showComplexAtributte("Ubicacion", c.getUbicacion());
+        panelInformacion.getChildren().addAll(telefonos, correos, ubicacion);
+        /*
+        if(!c.getTelefonos().isEmpty())
+            panelInformacion.getChildren().add(showAtributte("Telefono", ));
+        
+        if(!c.getTelefonos().isEmpty())
+            panelInformacion.getChildren().add(showAtributte("Telefono", ));
         if(contacto.getFotos().size()!=0)
-            imvFotos.setImage(new Image(contacto.getFotos().get(cont)));
+            ivFotos.setImage(new Image(contacto.getFotos().get(cont)));
+        /*
+        if (contacto.getFotos().size()>1){
+            antFoto.setVisible(true); sgteFoto.setVisible(true);
+        }
+        
+        //Implementar un metodo para hacer esta busqueda
+        for(int i = 0; i < allContacts.size(); i++){
+            if(allContacts.get(i).getNombre().equals(contacto.getNombre()))
+                currentPos = i;
+        }*/
+        
+        
         
         /*
         for(String s:contacto.getTelefonos()){
@@ -180,12 +207,46 @@ public class InfoContactoController implements Initializable {
             Label lb2 = new Label();
             lb2.setText(s);
             correos.getChildren().add(lb2);
-        }*/
+        }
         for(Contacto ct : contacto.getContactos()){
             Label lb3 = new Label();
             lb3.setText(ct.getNombre());
             contactos.getChildren().add(lb3);
+        }*/
+    }
+    
+    private HBox showAtributte(String titulo, String contenido){
+        HBox hbx = new HBox();
+        hbx.setSpacing(10);
+        hbx.setMinHeight(30); hbx.setMinWidth(232);
+        hbx.setAlignment(Pos.CENTER_LEFT);
+        hbx.setStyle("-fx-background-color:  #e1e1e1" );
+        hbx.setPadding(new Insets(10, 10,10,10));
+        hbx.setSpacing(5);
+        Label label1 = new Label(titulo + ": ");
+        label1.setStyle("-fx-font-weight: bold;");
+        Label label2 = new Label(contenido);
+        hbx.getChildren().addAll(label1, label2);
+        return hbx;
+    }
+    
+    private VBox showComplexAtributte(String titulo, List<AtributoComplejo> contenido){
+        VBox vbx = new VBox();
+        vbx.setMaxHeight(30); vbx.setMaxWidth(232);
+        vbx.setAlignment(Pos.CENTER_LEFT);
+        vbx.setStyle("-fx-background-color:  #e1e1e1" );
+        vbx.setPadding(new Insets(10,10,10,10));
+        vbx.setSpacing(10);
+        Label label1 = new Label(titulo);
+        label1.setStyle("-fx-font-weight: bold;");
+        vbx.getChildren().add(label1);
+        int numeroTelefono = 1;
+        for(AtributoComplejo ac : contenido){
+            Label label = new Label(ac.getNombre() + " " + numeroTelefono + " ("+ ac.getDescripcion() +") : " + ac.getContenido());
+            vbx.getChildren().add(label);
+            numeroTelefono++;
         }
+        return vbx;
     }
 
     @FXML
